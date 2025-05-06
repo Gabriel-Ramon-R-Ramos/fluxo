@@ -1,0 +1,156 @@
+:root {
+  --sidebar-width: 190px;
+  --sidebar-collapsed-width: 50px;
+}
+
+.side_bar {
+  width: var(--sidebar-width);
+  height: 100vh;
+  background-color: #0d4aff;
+  color: white;
+  font-weight: bold;
+  position: fixed;
+  top: 0;
+  left: calc(-1 * var(--sidebar-width) + var(--sidebar-collapsed-width));
+  padding-top: 20px;
+  z-index: 2;
+  transition: left 0.3s ease-in-out;
+  font-family: "Jura", sans-serif;
+}
+
+.side_bar.open {
+  left: 0;
+}
+.side_bar ul {
+  list-style-type: none;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+}
+
+.side_bar ul li {
+  text-align: center;
+  transition: opacity 0.3s ease, height 0.3s ease;
+  opacity: 1;
+  overflow: hidden;
+}
+
+.side_bar ul li a {
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  padding: 3px;
+  justify-content: center;
+}
+
+.side_bar ul li a:hover {
+  background-color: #0dffb0;
+  border-radius: 10px;
+  color: #0d4aff;
+  height: auto;
+  width: 100px;
+  padding: 3px;
+}
+
+.content_wrapper {
+  position: relative;
+  transition: margin-left 0.3s ease-in-out;
+  margin-left: var(--sidebar-collapsed-width);
+}
+
+.side_bar.open + .content_wrapper {
+  margin-left: var(--sidebar-width);
+}
+
+.espaco_home {
+  margin-bottom: 10px;
+  margin-top: 40px;
+}
+
+.espaco_cadastro {
+  margin-bottom: 10px;
+}
+
+.espaco_consulta {
+  margin-bottom: 420px;
+}
+
+.espaco_ajuda {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action_bar {
+  position: fixed;
+  bottom: 0;
+  left: var(--sidebar-collapsed-width);
+  width: calc(100% - var(--sidebar-collapsed-width));
+  padding: 20px;
+  display: flex;
+  z-index: 1;
+  transition: left 0.3s ease-in-out, width 0.3s ease-in-out;
+}
+
+.side_bar.open + .action_bar + .content_wrapper {
+  left: var(--sidebar-width);
+  width: calc(100% - var(--sidebar-width));
+}
+
+.ondinha {
+  width: 100%;
+  padding: 0px;
+  position: absolute;
+  top: 3px;
+  left: 25px;
+}
+
+.ondinha img {
+  width: 100px;
+  height: auto;
+  object-fit: contain;
+}
+
+.burguer {
+  position: fixed;
+  top: 5px;
+  left: var(--sidebar-collapsed-width);
+  font-size: 30px;
+  cursor: pointer;
+  transition: left 0.3s ease-in-out;
+  z-index: 1000;
+  background: transparent;
+  border: none;
+  color: #0dffb0;
+  border: none;
+  padding: 0;
+}
+
+.side_bar.open + .content_wrapper .burguer {
+  left: var(--sidebar-width);
+}
+
+.burguer:hover {
+  background-color: #919191;
+}
+
+.burguer {
+  position: absolute;
+  top: 5px;
+  left: 100%;
+  transform: translateX(-140%);
+  font-size: 30px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 3;
+  transition: transform 0.3s ease-in-out;
+}
+
+.side_bar .burguer:hover {
+  background-color: #919191;
+}

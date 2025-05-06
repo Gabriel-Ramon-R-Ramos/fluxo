@@ -1,0 +1,279 @@
+/* Fontes */
+@import url("https://fonts.googleapis.com/css2?family=Jura:wght@300..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+/* === Global === */
+:root {
+  /* === Cores === */
+  --primary-color: #0d4aff;
+  --details-color: #0dffb0;
+  --white-color: #fff;
+  --text-color: #000;
+  --label-color: #dedede;
+  --text-label-color: #4a4343;
+  --bg-color: #eaeaea;
+  /* === Tipografia === */
+  --font-size-xs: 0.694rem;
+  --font-size-sm: 0.833rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 2.074rem;
+  --font-size-xl: 2.488rem;
+  --font-size-xxl: 2.986rem;
+  /* === Espaçamentos === */
+  --spacing-xs: 0.4rem;
+  --spacing-sm: 0.8rem;
+  --spacing-md: 1.6rem;
+  --spacing-lg: 2.4rem;
+  --spacing-xl: 3.2rem;
+  --spacing-xxl: 4.8rem;
+  /* === Raio === */
+  --radius-xs: 0.366rem;
+  --radius-sm: 0.4rem;
+  --radius-md: 0.8rem;
+  --radius-lg: 1rem;
+  /* === Fontes === */
+  --default-font-weight: 700;
+  --default-font: "Jura", system-ui, -apple-system, sans-serif;
+  --head-title-font: "Poppins", system-ui, -apple-system, sans-serif;
+  --subhead-font: "Poppins", system-ui, -apple-system, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  display: flex;
+  font-family: var(--default-font);
+  font-weight: var(--default-font-weight);
+  font-size: 1.6rem;
+  min-height: 100svh;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+}
+
+a,
+li,
+button {
+  text-decoration: none;
+  list-style: none;
+  font-family: var(--default-font);
+  font-weight: var(--default-font-weight);
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* === Utilitários === */
+#side-bar {
+  height: 100svh;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--font-size-lg);
+  padding: var(--spacing-md);
+  gap: var(--spacing-xxl);
+  color: var(--white-color);
+  background-color: var(--primary-color);
+
+  & .logo-side-bar {
+    display: none;
+  }
+
+  & i {
+    cursor: pointer;
+  }
+
+  & .links {
+    display: flex;
+    flex-flow: column;
+    gap: var(--spacing-xxl);
+
+    & li {
+      padding: var(--spacing-xs);
+
+      & a {
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    & .description {
+      width: 0;
+      overflow: hidden;
+    }
+
+    & .active {
+      border-radius: var(--radius-sm);
+      color: var(--text-color);
+      background-color: var(--details-color);
+    }
+  }
+
+  & .right-angle {
+    display: none;
+    position: absolute;
+    right: -1rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    border: none;
+    transform: rotate(180deg);
+    font-weight: var(--default-font-weight);
+    color: var(--white-color);
+    background-color: var(--details-color);
+  }
+
+  &.open-sidebar {
+    position: relative;
+    align-items: start;
+
+    & .bars {
+      align-self: center;
+
+      & .logo-side-bar {
+        display: inline;
+        width: 15rem;
+      }
+
+      & .fa-bars {
+        display: none;
+      }
+    }
+
+    & .links a {
+      gap: var(--spacing-sm);
+
+      & .description {
+        width: 100%;
+      }
+    }
+
+    & .right-angle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+.head-title {
+  font-family: var(--head-title-font);
+  font-size: var(--font-size-xl);
+}
+
+.subhead {
+  font-family: var(--subhead-font);
+  font-size: var(--font-size-lg);
+}
+
+.top-action-bar {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+}
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  list-style: none;
+  gap: var(--font-size-xs);
+  font-size: var(--font-size-md);
+
+  & li {
+    cursor: pointer;
+
+    & > i {
+      cursor: none;
+      color: var(--details-color);
+    }
+
+    & a:link,
+    & a:visited {
+      color: var(--text-color);
+    }
+
+    & a:hover,
+    & a:active {
+      color: var(--text-color);
+    }
+  }
+}
+
+.highlight-button {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-xs);
+  border: none;
+  cursor: pointer;
+  color: var(--details-color);
+  background-color: var(--primary-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  &:hover {
+    color: var(--primary-color);
+    background-color: var(--details-color);
+  }
+}
+
+.simple-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-xs);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  color: var(--text-label-color);
+
+  &:hover {
+    border-radius: var(--radius-xs);
+    color: var(--label-color);
+    background-color: var(--text-label-color);
+  }
+}
+
+.highlight-text {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-xs);
+  border: none;
+  color: var(--details-color);
+  background-color: var(--primary-color);
+}
+
+.search {
+  width: max-content;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-xs);
+  border: solid 1px var(--text-label-color);
+  background-color: var(--label-color);
+
+  & input {
+    width: 21rem;
+    font-family: var(--default-font);
+    font-weight: var(--default-font-weight);
+    border-radius: var(--radius-xs);
+    border: none;
+    background-color: var(--label-color);
+  }
+
+  & i {
+    color: var(--text-label-color);
+  }
+}

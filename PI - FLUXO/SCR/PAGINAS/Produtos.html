@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Produtos</title>
+    <link rel="stylesheet" href="../STYLE/Home_Produtos.css" />
+  </head>
+  <body>
+    <button id="burguer" class="burguer">☰</button>
+    <div class="side_bar">
+        <div class="ondinha">
+          <img src="../ASSETS/IMAGENS/ondinha.png" alt="logo" />
+        </div>
+        <ul>
+          <li class="espaco_home"><a href="Produtos.html">Home</a><img class="img_home" src="../ASSETS/ÍCONES/Home.png" alt="home"></li>
+          <li class="espaco_cadastro"><a href="Cadastro_Produtos.html">Produtos</a><img class="img_produtos" src="../ASSETS/ÍCONES/produtos.png" alt="produtos">
+          </li>
+          
+          <li class="espaco_consulta"><a href="Controle_Estoque.html">Estoque</a><img class="img_estoque" src="../ASSETS/ÍCONES/estoque.png" alt="estoque">
+          </li>
+  
+          <li class="espaco_ajuda"><a href="#">Conta</a><img class="img_config" src="../ASSETS/ÍCONES/config.png" alt="config">
+          </li>
+        </ul>
+     </div>
+    <main class="home">
+      <section class="home_head">
+        <nav class="breadcrumb">
+          <ul>
+            <li><a href="#">Início</a></li>
+            <li>Produtos</li>
+          </ul>
+          <button class="inc-Produto" id="botaoIncluirProduto">Incluir Produto</button>
+        </nav>
+        <section class="head-title">
+          <h1>Produtos</h1>
+        </section>
+        <section class="filter-bar">
+          <div class="search-container">
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Pesquisar por nome ou SKU"
+            />
+            <button id="searchButton" class="search-button">
+              <img
+                src="../ASSETS/ÍCONES/pesquisar.png"
+                alt="Pesquisar"
+                class="search-icon"
+              />
+            </button>
+          </div>
+        </section>
+        <section class="nav-tabs">
+          <div class="filter-nav">
+            <button class="filter active">Todos</button>
+            <button class="filter">Em Estoque</button>
+            <button class="filter">Vencidos</button>
+            <button class="filter">A Vencer</button>
+            <div class="active-indicator"></div>
+          </div>
+        </section>
+      </section>
+      <section class="home_tabela">
+        <table>
+          <thead>
+            <tr>
+              <th><input type="checkbox" id="selectAll" /></th>
+              <th>Nome</th>
+              <th>SKU</th>
+              <th>Preço</th>
+              <th>Estoque Disponível</th>
+              <th>Estoque em Loja</th>
+              <th>Vencimento</th>
+            </tr>
+          </thead>
+          <tbody id="tabela-produtos">
+
+          </tbody>
+        </table>
+      </section>
+      <div id="paginacao" class="paginacao-container"></div>
+      <section>
+        <footer>
+          <p>fluxo.log © Todos os direitos reservados</p>
+        </footer>
+      </section>
+    </main>
+    <script src="../SCRIPTS/filtro_pesquisa.js"></script>
+    <script src="../SCRIPTS/produtosidebar.js"></script>
+  </body>
+</html>

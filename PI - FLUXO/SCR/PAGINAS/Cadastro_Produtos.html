@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastrar Produtos</title>
+    <link rel="stylesheet" href="../STYLE/Cadastrar_Produtos.css" />
+  </head>
+  <body>
+    <div class="side_bar">
+      <button id="burguer" class="burguer">☰</button>
+      <div class="ondinha">
+        <img src="../ASSETS/IMAGENS/ondinha.png" alt="logo" />
+      </div>
+      <ul>
+        <li class="espaco_home">
+          <a href="Produtos.html">Home</a
+          ><img class="img_home" src="../ASSETS/ÍCONES/Home.png" alt="home" />
+        </li>
+        <li class="espaco_cadastro">
+          <a href="Cadastro_Produtos.html">Produtos</a
+          ><img
+            class="img_produtos"
+            src="../ASSETS/ÍCONES/produtos.png"
+            alt="produtos"
+          />
+        </li>
+        <li class="espaco_consulta">
+          <a href="Controle_Estoque.html">Estoque</a
+          ><img
+            class="img_estoque"
+            src="../ASSETS/ÍCONES/estoque.png"
+            alt="estoque"
+          />
+        </li>
+        <li class="espaco_ajuda">
+          <a href="adm.html">Conta</a
+          ><img
+            class="img_config"
+            src="../ASSETS/ÍCONES/config.png"
+            alt="config"
+          />
+        </li>
+      </ul>
+    </div>
+    <div class="content_wrapper">
+      <section class="main">
+        <section class="painel_head">
+          <div class="botao_editar">
+            <button
+              id="editar"
+              class="editar"
+              type="button"
+              onclick="mostrarBotoesDeEdicao()"
+            >
+              Incluir
+            </button>
+          </div>
+          <nav class="breadcrumb">
+            <ul>
+              <li><a href="#">Início</a></li>
+              <li>Produtos</li>
+            </ul>
+          </nav>
+        </section>
+        <div class="produto_header">
+          <div class="imagem_produto">
+            <img
+              class="img_produto"
+              src="../ASSETS/IMAGENS/img-produto.png"
+              alt="img_produto"
+            />
+          </div>
+          <h1 class="titulo">Novo Produto</h1>
+        </div>
+
+        <!-- Abas de navegação -->
+        <section class="painel_body">
+          <div class="nav-tabs">
+            <div class="filter-nav">
+              <button class="filter active" data-target="dados_gerais">
+                Dados Gerais
+              </button>
+              <button class="filter" data-target="dados_estoque">
+                Dados de Estoque
+              </button>
+              <div class="active-indicator"></div>
+            </div>
+          </div>
+
+          <!-- Tabela de Dados Gerais - Edição -->
+          <div id="dados_gerais" class="dados_gerais_edicao aba">
+            <div class="dados_produto">
+              <div class="linhas">
+                <div class="coluna">
+                  <label for="nome_produto">Nome do Produto</label>
+                  <input
+                    type="text"
+                    name="nome_produto"
+                    id="nome_produto"
+                    placeholder="Adicione o nome do produto"
+                  />
+                </div>
+                <div class="coluna">
+                  <label for="SKU">SKU</label>
+                  <input
+                    type="text"
+                    name="SKU"
+                    id="SKU"
+                    placeholder="SKU ou referência do produto (opcional)"
+                  />
+                </div>
+              </div>
+              <div class="linhas">
+                <div class="coluna">
+                  <label for="descricao">Descrição</label>
+                  <input
+                    type="text"
+                    name="descricao"
+                    id="descricao"
+                    placeholder="Adicione a descrição do produto"
+                  />
+                </div>
+                <div class="coluna">
+                  <label for="categoria">Categoria</label>
+                  <input
+                    list="categorias"
+                    name="categoria"
+                    id="categoria"
+                    placeholder="Escolha a categoria"
+                  />
+                  <datalist id="categorias">
+                    <option value="Alimento"></option>
+                    <option value="Alvenaria"></option>
+                    <option value="Limpeza"></option>
+                    <option value="Higiene"></option>
+                  </datalist>
+                </div>
+              </div>
+              <div class="linhas">
+                <div class="coluna">
+                  <label for="marca">Marca</label>
+                  <input
+                    type="text"
+                    name="marca"
+                    id="marca"
+                    placeholder="Marca do produto (opcional)"
+                  />
+                </div>
+                <div class="coluna">
+                  <label for="modelo">Modelo</label>
+                  <input
+                    type="text"
+                    name="modelo"
+                    id="modelo"
+                    placeholder="Modelo do produto (opcional)"
+                  />
+                </div>
+              </div>
+              <div class="linhas">
+                <div class="coluna preco_venda">
+                  <label for="preco_venda">Preço</label>
+                  <input
+                    type="text"
+                    name="preco_venda"
+                    id="preco_venda"
+                    placeholder="R$ 0,00"
+                  />
+                </div>
+              </div>
+              <div class="linhas">
+                <div class="coluna">
+                  <label for="largura">Largura</label>
+                  <input
+                    type="text"
+                    name="largura"
+                    id="largura"
+                    placeholder="0,0cm"
+                  />
+                </div>
+                <div class="coluna">
+                  <label for="altura">Altura</label>
+                  <input
+                    type="text"
+                    name="altura"
+                    id="altura"
+                    placeholder="0,0cm"
+                  />
+                </div>
+              </div>
+              <div class="linhas">
+                <div class="coluna">
+                  <label for="comprimento">Comprimento</label>
+                  <input
+                    type="text"
+                    name="comprimento"
+                    id="comprimento"
+                    placeholder="0,0cm"
+                  />
+                </div>
+                <div class="coluna">
+                  <label for="peso">Peso</label>
+                  <input
+                    type="text"
+                    name="peso"
+                    id="peso"
+                    placeholder="0,0kg"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tabela de Dados Gerais - Visualização -->
+          <div
+            id="dados_gerais_visualizar"
+            class="dados_gerais_visualizar aba aba_active"
+          >
+            <div class="dados_produto_visualizacao">
+              <div class="linhas_visu">
+                <div class="coluna_visu">
+                  <label for="nome_produto">Nome do Produto</label>
+                  <div class="">Camiseta Polo</div>
+                </div>
+                <div class="coluna_visu">
+                  <label for="SKU">SKU</label>
+                  <div class="">Camiseta Polo</div>
+                </div>
+                <div class="coluna_visu">
+                  <label for="preco_venda">Preço Venda</label>
+                  <div class="">Camiseta Polo</div>
+                </div>
+              </div>
+              <div class="linhas_visu">
+                <div class="coluna_visu">
+                  <label for="descricao">Descrição</label>
+                  <div class="">Camiseta Polo</div>
+                </div>
+                <div class="coluna_visu">
+                  <label for="categoria">Categoria</label>
+                  <div class="">Camiseta Polo</div>
+                </div>
+                <div class="coluna_visu">
+                  <label for="preco_promocional">Preço Promocional</label>
+                  <div class="">Camiseta Polo</div>
+                </div>
+              </div>
+              <div class="linhas_visu">
+                <div class="coluna_visu">
+                  <label for="marca">Marca</label>
+                  <div class="">Camiseta Polo</div>
+                </div>
+                <div class="coluna_visu">
+                  <label for="modelo">Modelo</label>
+                  <div class="">Camiseta Polo</div>
+                </div>
+              </div>
+            </div>
+            <div class="linha_divisoria"></div>
+            <div class="dimensoes_peso">
+              <div>
+                <label for="dimensoes_peso">Dimensões e Peso</label>
+                <div class="linhas">
+                  <div class="coluna">
+                    <label for="largura">Largura</label>
+                    <div class="">0,0cm</div>
+                  </div>
+                  <div class="coluna">
+                    <label for="altura">Altura</label>
+                    <div class="">0,0cm</div>
+                  </div>
+                  <div class="coluna">
+                    <label for="comprimento">Comprimento</label>
+                    <div class="">0,0cm</div>
+                  </div>
+                  <div class="coluna">
+                    <label for="peso">Peso</label>
+                    <div class="">0,0kg</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tabela de Dados de Estoque - Visualização -->
+          <div
+            id="dados_estoque_visualizar"
+            class="dados_estoque_visu aba aba_active"
+          >
+            <div class="dados_produto_visualizacao">
+              <div class="coluna_estoque">
+                <div class="titulo_1">Estoque</div>
+                <div class="itens_estoque">
+                  <div class="item">
+                    <label for="estoque">Estoque Atual</label>
+                    <div class="">Camiseta Polo</div>
+                  </div>
+                  <div class="item">
+                    <label for="estoque_minimo">Estoque Mínimo</label>
+                    <div class="">Camiseta Polo</div>
+                  </div>
+                  <div class="item">
+                    <label for="localizacao">Localização</label>
+                    <div class="">Camiseta Polo</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="coluna_estoque">
+                <div class="titulo_2">Validade</div>
+                <div class="itens_validade">
+                  <div class="item">
+                    <label for="validade">Data de Validade</label>
+                    <div class="">Camiseta Polo</div>
+                  </div>
+                  <div class="item">
+                    <label for="lote">Lote</label>
+                    <div class="">Camiseta Polo</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="coluna_estoque">
+                <div class="titulo_3">Fornecedor</div>
+                <div class="itens_fornecedor">
+                  <div class="item">
+                    <label for="nome_fornecedor">Nome do Fornecedor</label>
+                    <div class="">Camiseta Polo</div>
+                  </div>
+                  <div class="item">
+                    <label for="codigo_fornecedor">Código do Fornecedor</label>
+                    <div class="">Camiseta Polo</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <!-- Botões action bar -->
+      <section>
+        <div class="action_bar">
+          <button
+            class="salvar hidden"
+            id="salvar"
+            onclick="esconderBotoesDeEdicao()"
+          >
+            Salvar
+          </button>
+          <button
+            class="cancelar hidden"
+            id="cancelar"
+            onclick="esconderBotoesDeEdicao()"
+          >
+            Cancelar
+          </button>
+          <button class="voltar" id="voltar" onclick="acaoBotaoVoltar()">
+            Voltar
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <section>
+      <footer>
+        <p>fluxo.log © Todos os direitos reservados</p>
+      </footer>
+    </section>
+
+    <script src="../SCRIPTS/Cadastro_Produtos.js"></script>
+  </body>
+</html>

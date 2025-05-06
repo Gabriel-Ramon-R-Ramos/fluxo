@@ -1,0 +1,210 @@
+:root {
+  --wave-back-color: #0dffb0;
+  --wave-front-color: #0d4aff;
+}
+
+/*Reset de Estili cada vez que se recarrega*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/*Estilização do Body*/
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: white;
+  flex-direction: column;
+}
+/* Estilização da Main*/
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Estilização da Caixa de Login*/
+.box {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  border: 5px solid #007bff;
+  width: 500px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Formulario, organiza os elementos do formulário*/
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+/* Inputs, estiliza os campos de entrada*/
+input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+}
+
+/*Fiz uma div para poder editar só o botão dentro do form*/
+.botao-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+/*Estilização dos botões*/
+.botao-container button {
+  background-color: #0d4aff;
+  color: #0dffb0;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 60%;
+  border: none;
+  outline: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.botao-container button:hover {
+  background-color: #0dffb0;
+  color: #0d4aff;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer {
+  text-align: center;
+  padding: 20px 0;
+  font-size: 14px;
+  width: 100%;
+  z-index: 3;
+}
+
+@font-face {
+  font-family: 'Jura-Light';
+  src: url('../ASSETS/FONTES/Jura-Light.woff') format('woff'),
+    url('../ASSETS/FONTES/Jura-Light.woff2') format('woof2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+h2 {
+  gap: 5px;
+  font-family: 'Jura-Light', sans-serif;
+  text-align: center;
+}
+
+.botoes label,
+input {
+  margin-bottom: 20px;
+}
+
+/* 1) Defina as cores */
+:root {
+  --wave-back-color: #0dffb0;
+  --wave-front-color: #0d4aff;
+}
+
+/* 2) Container geral */
+.wave-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 150px;
+  overflow: hidden;
+  pointer-events: none;
+  transform: translateX(-25%);
+}
+
+/* 3) Estilos comuns às duas ondas */
+.wave,
+.wave--front {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 120px;
+  mask: url('data:image/svg+xml;utf8,\<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100">\<path fill="white" d="M0,30 C300,80 900,-20 1200,30 L1200,100 L0,100 Z"/>\</svg>')
+    repeat-x 0 0;
+  mask-size: auto 200px;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* 4) Onda de trás – amplitude menor, ciclo mais longo */
+.wave {
+  background-color: var(--wave-back-color);
+  z-index: 1;
+  animation: wave-back 12s ease-in-out infinite;
+}
+
+/* 5) Onda da frente – amplitude maior, ciclo mais curto */
+.wave--front {
+  background-color: var(--wave-front-color);
+  z-index: 2;
+  /* opacity: 0.6; */
+  animation: wave-front 8s ease-in-out infinite;
+}
+
+/* 6) Keyframes separados para cada layer */
+/* Onda de trás: deslocamento suave +/-50% */
+@keyframes wave-back {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-45%);
+  }
+  50% {
+    transform: translateX(-50%);
+  }
+  75% {
+    transform: translateX(-55%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Onda da frente: deslocamento mais dinâmico +/-50% com “ping-pong” */
+@keyframes wave-front {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-40%);
+  }
+  40% {
+    transform: translateX(-55%);
+  }
+  60% {
+    transform: translateX(-45%);
+  }
+  80% {
+    transform: translateX(-60%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

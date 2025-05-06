@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/b8fc751366.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="../STYLE/adm_page/adm.css" />
+    <title>F.L.U.X.O</title>
+  </head>
+  <body>
+    <div id="side-bar">
+      <div class="bars">
+        <img
+          class="logo-side-bar"
+          src="../ASSETS/IMAGENS/Logo_side_bar.png"
+          alt="ondinha"
+        />
+        <i id="open_btn" class="fa-solid fa-bars"></i>
+      </div>
+
+      <ul class="links">
+        <li>
+          <a href="#home">
+            <i class="fa-solid fa-house"></i>
+            <span class="description">Inicio</span>
+          </a>
+        </li>
+        <li>
+          <a href="#produtos">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span class="description">Produtos</span>
+          </a>
+        </li>
+        <li>
+          <a href="#estoque">
+            <i class="fa-solid fa-box"></i>
+            <span class="description">Estoque</span>
+          </a>
+        </li>
+      </ul>
+
+      <button id="close_btn" class="right-angle">
+        <i class="fa-solid fa-angle-right"></i>
+      </button>
+
+      <ul class="links">
+        <li class="active">
+          <a href="#adm">
+            <i class="fa-solid fa-gear"></i>
+            <span class="description">Administração</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- <div class="side_bar">
+      <button id="burguer" class="burguer">☰</button>
+      <div class="ondinha">
+        <img src="../ASSETS/IMAGENS/ondinha.png" alt="logo" />
+      </div>
+      <ul>
+        <li class="espaco_home">
+          <a href="">Home</a
+          ><img class="img_home" src="../ASSETS/ÍCONES/Home.png" alt="home" />
+        </li>
+        <li class="espaco_cadastro">
+          <a href="">Produtos</a
+          ><img
+            class="img_produtos"
+            src="../ASSETS/ÍCONES/produtos.png"
+            alt="produtos"
+          />
+        </li>
+        <li class="espaco_consulta">
+          <a href="">Estoque</a
+          ><a
+            ><img
+              class="img_estoque"
+              src="../ASSETS/ÍCONES/estoque.png"
+              alt="estoque"
+          /></a>
+        </li>
+
+        <li class="espaco_ajuda">
+          <a href="adm.html">Conta</a
+          ><img
+            class="img_config"
+            src="../ASSETS/ÍCONES/config.png"
+            alt="config"
+          />
+        </li>
+      </ul>
+    </div> -->
+
+    <main id="adm-painel">
+      <header id="painel-head">
+        <div class="top-action-bar">
+          <ul class="breadcrumbs">
+            <li><a href="#home">inicio</a></li>
+            <li><i class="fa-solid fa-angle-right"></i></li>
+            <li><a href="#adm">Administração</a></li>
+          </ul>
+          <!-- JS para abrir um painel interno -->
+          <button id="open-modal-add-user" class="highlight-button">
+            Adicionar Funcionário
+          </button>
+        </div>
+        <div class="head-title">Usuários do Sistema</div>
+      </header>
+
+      <section id="painel-body">
+        <form action="" class="search">
+          <input
+            type="text"
+            name="user"
+            id="search-input"
+            placeholder="Pesquise por nome ou login"
+          />
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </form>
+
+        <div class="overview">
+          <div class="total">
+            <div>Usuários Cadastrados</div>
+            <!-- JS para mostrar os users totais -->
+            <div class="total-user">15</div>
+          </div>
+        </div>
+
+        <div class="users-widget">
+          <!-- JS para puxar os usuário do DB -->
+          <div class="widget-content">
+            <!-- JS para pegar o nome, email e acesso -->
+            <div class="name">Jose Antonio Nome Grandev</div>
+            <div class="email">jose@email.com</div>
+            <div class="manage">
+              <div class="access-level highlight-text">Admin</div>
+              <div id="open-modal-manage-user" class="simple-button">
+                Gerenciar
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div id="bottom-action-bar">
+        <!-- Js para mostrar a paginação 
+        Cada página terá um total de 9 users
+        -->
+        <nav>
+          <ul class="pages">
+            <li class="active">01</li>
+            <li>02</li>
+            <li>03</li>
+            <li>04</li>
+            <li>05</li>
+            <li class="more">...</li>
+            <li>30</li>
+          </ul>
+          <i class="fa-solid fa-arrow-right"></i>
+        </nav>
+      </div>
+    </main>
+
+    <div id="modal-add-user">
+      <div class="container">
+        <div class="header">
+          <div class="subhead">Adicionar Usuário</div>
+
+          <div id="close-modal-add-user" class="simple-button">
+            fechar
+            <i class="fa-solid fa-circle-xmark"></i>
+          </div>
+        </div>
+
+        <div class="content">
+          <form id="add-user" action="" method="post">
+            <div class="form-item">
+              <label for="add_name">Nome do Usuário</label>
+              <input
+                type="text"
+                id="add_name"
+                name="name"
+                required
+                minlength="3"
+                placeholder="Ex.: Gabriel Ramon"
+              />
+            </div>
+
+            <div class="form-item">
+              <label for="add_email">E-mail</label>
+              <input
+                type="email"
+                id="add_email"
+                name="email"
+                required
+                placeholder="Ex.: gabriel@seudominio.com"
+              />
+            </div>
+
+            <div class="form-item">
+              <label for="add_password">Senha</label>
+              <input
+                type="password"
+                id="add_password"
+                name="password"
+                required
+                placeholder="***********"
+              />
+            </div>
+
+            <div class="form-item">
+              <label for="add_matricula">Matricula</label>
+              <input
+                type="text"
+                id="add_matricula"
+                name="matricula"
+                placeholder="Ex.: 123456789"
+              />
+            </div>
+
+            <div class="form-item">
+              <label for="add_departamento">Departamento</label>
+              <input
+                type="text"
+                id="add_departamento"
+                name="departamento"
+                placeholder="Ex.: Logistca"
+              />
+            </div>
+
+            <div class="form-item">
+              <label for="add_acesso">Nível de acesso</label>
+              <select name="acesso" id="add_acesso">
+                <option value="">-- Escolha uma opção --</option>
+                <option value="admin">Administrador</option>
+                <option value="funcionario">Funcionário</option>
+              </select>
+            </div>
+          </form>
+
+          <div class="buttons">
+            <button type="submit" form="add-user" class="highlight-button">
+              Salvar
+            </button>
+
+            <button id="close-modal-add-user2" class="simple-button">
+              Cancelar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="modal-manage-user">
+      <div class="container">
+        <div class="header">
+          <div class="subhead">Gerenciar Usuário</div>
+
+          <div id="close-modal-manage-user" class="simple-button">
+            fechar
+            <i class="fa-solid fa-circle-xmark"></i>
+          </div>
+        </div>
+
+        <div class="content">
+          <form id="manage-user" action="">
+            <div class="form-item">
+              <label for="manage_name">Nome do Usuário</label>
+              <input
+                type="text"
+                id="manage_name"
+                name="name"
+                required
+                minlength="3"
+                placeholder="Ex.: Gabriel Ramon"
+              />
+            </div>
+
+            <div class="form-item">
+              <label for="manage_email">E-mail</label>
+              <input
+                type="email"
+                id="manage_email"
+                name="email"
+                required
+                placeholder="Ex.: gabriel@seudominio.com"
+              />
+            </div>
+
+            <div class="form-item">
+              <label for="manage_password">Senha</label>
+              <input
+                type="password"
+                id="manage_password"
+                name="password"
+                required
+                placeholder="***********"
+              />
+            </div>
+
+            <div class="form-item">
+              <label for="manage_matricula">Matricula</label>
+              <input
+                type="text"
+                id="manage_matricula"
+                name="matricula"
+                placeholder="Ex.: 123456789"
+              />
+            </div>
+
+            <div class="form-item">
+              <label for="manage_departamento">Departamento</label>
+              <input
+                type="text"
+                id="manage_departamento"
+                name="departamento"
+                placeholder="Ex.: Logistca"
+              />
+            </div>
+
+            <div class="form-item">
+              <label for="manage_acesso">Nível de acesso</label>
+              <select name="acesso" id="manage_acesso">
+                <option value="">-- Escolha uma opção --</option>
+                <option value="admin">Administrador</option>
+                <option value="funcionario">Funcionário</option>
+              </select>
+            </div>
+          </form>
+
+          <div class="buttons">
+            <button type="submit" form="manage-user" class="highlight-button">
+              Salvar
+            </button>
+
+            <button id="close-modal-manage-user2" class="simple-button">
+              Cancelar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../SCRIPTS/adm_page/sideBarAdm.js"></script>
+    <script src="../SCRIPTS/adm_page/usersModal.js"></script>
+    <script src="../SCRIPTS/adm_page/manageUsers.js"></script>
+    <!-- <script src="../SCRIPTS/adm_page/sideBarAdmYosaf.js"></script> -->
+  </body>
+</html>
