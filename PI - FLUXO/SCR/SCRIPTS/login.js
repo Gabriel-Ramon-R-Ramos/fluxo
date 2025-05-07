@@ -41,7 +41,7 @@ document
 
       if (resposta.ok) {
         localStorage.setItem('token', dados.token);
-        window.location.href = 'Produtos.html';
+        window.location.href = 'PI - FLUXO/SCR/PAGINAS/Produtos.html';
       } else {
         alert(dados?.mensagem || 'Login inválido!');
       }
