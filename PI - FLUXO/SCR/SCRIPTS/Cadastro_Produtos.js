@@ -125,7 +125,7 @@ function acaoBotaoVoltar() {
 async function carregarDadosProduto(id) {
 	try {
 		// Faz uma requisição GET para obter os dados do produto
-		const response = await fetch(`http://localhost:8080/produtos/consulta/${id}`, {
+		const response = await fetch(`https://api-fluxo.onrender.com/produtos/consulta/${id}`, {
 			headers: {
 				Authorization: `Bearer ${localStorage.getItem('token')}`, // Autenticação
 			},

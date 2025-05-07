@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Função principal para buscar produtos
   function fetchProdutos(page = 1, search = '') {
-    const url = new URL('http://localhost:8080/produtos/todos');
+    const url = new URL('https://api-fluxo.onrender.com/produtos/todos');
     url.searchParams.append('page', page - 1);
     url.searchParams.append('size', itensPorPagina);
     if (search) url.searchParams.append('search', search);
