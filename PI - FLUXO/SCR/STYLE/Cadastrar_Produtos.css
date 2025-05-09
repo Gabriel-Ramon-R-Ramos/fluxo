@@ -10,10 +10,7 @@
 }
 
 body {
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
-  overflow: hidden;
+  overflow: auto;
   margin: 0;
   padding: 0;
 }
@@ -518,7 +515,7 @@ body {
   width: 100%;
   margin-left: 0px;
   margin-right: auto;
-  margin-top: 0px;
+  margin-top: 80px;
   font-family: 'Jura', sans-serif;
   white-space: nowrap;
   padding-bottom: 2px;
@@ -564,22 +561,23 @@ body {
   width: 100%;
   margin-left: 100px;
   margin-right: auto;
-  /* padding: 20px; */
   font-family: 'Jura', sans-serif;
   white-space: nowrap;
   padding-bottom: 2px;
-  /* position: relative; */
+  position: relative;
+  z-index: 2;
 }
 
 .linhas {
   display: flex;
   gap: 200px;
-  margin-bottom: 40px;
 }
 
 .coluna {
   display: flex;
   flex-direction: column;
+  margin-bottom: 10px;
+  min-width: 0;
 }
 
 .coluna label {
@@ -606,12 +604,12 @@ body {
 
 .preco_venda input {
   width: 150px;
+  margin-bottom: 10px;
 }
 
 .preco_venda label {
-  margin-bottom: 2px;
   font-weight: 600;
-  margin-top: 30px;
+  margin-top: 10px;
 }
 
 .dados_produtos {
@@ -635,12 +633,11 @@ body {
 
 .dados_estoque_visu {
   max-width: 1000px;
-  /* margin-top: 0px; */
+  margin-top: 115px;
   width: 100%;
   margin-left: 0px;
   margin-right: auto;
   font-family: 'Jura', sans-serif;
-  /* padding-bottom: 2px; */
   position: absolute;
 }
 
@@ -710,6 +707,22 @@ body {
 .titulo_3 {
   font-weight: 700;
   font-size: 22px;
+}
+
+.descricao {
+  display: -webkit-box; /* necessário para line-clamp */
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3; /* número máximo de linhas visíveis */
+  overflow: hidden; /* esconde o resto do texto */
+  text-overflow: ellipsis; /* “…” no fim da última linha */
+
+  width: 800px; /* fixa a largura */
+  height: calc(1.2em * 3); /* altura = line-height × número de linhas */
+  line-height: 1.2em; /* ajuste conforme seu design */
+
+  white-space: normal; /* permite as quebras automáticas */
+  overflow-wrap: break-word; /* quebra palavras muito longas */
+  box-sizing: border-box; /* inclui padding/borda no cálculo */
 }
 
 /* Rodapé */
