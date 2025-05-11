@@ -1,6 +1,17 @@
+/* === Fontes Importadas === */
+@import url("https://fonts.googleapis.com/css2?family=Jura:wght@300..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
 :root {
+  /* === Cores === */
   --wave-back-color: #0dffb0;
   --wave-front-color: #0d4aff;
+  /* === Fontes === */
+  --default-font-weight: 700;
+  --default-font: "Jura", system-ui, -apple-system, sans-serif;
+  --head-title-font: "Poppins", system-ui, -apple-system, sans-serif;
+  --subhead-font: "Poppins", system-ui, -apple-system, sans-serif;
 }
 
 /*Reset de Estili cada vez que se recarrega*/
@@ -8,18 +19,20 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
 }
 
 /*Estilização do Body*/
 body {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100svh;
+  font-family: var(--default-font);
+  font-weight: var(--default-font-weight);
   background-color: white;
-  flex-direction: column;
 }
+
 /* Estilização da Main*/
 main {
   flex: 1;
@@ -30,17 +43,17 @@ main {
 
 /* Estilização da Caixa de Login*/
 .box {
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  border: 5px solid #007bff;
-  width: 500px;
-  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 20px;
+  margin: 10px;
+  max-width: 500px;
+  border-radius: 8px;
+  border: 5px solid #007bff;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  background-color: white;
 }
 
 /* Formulario, organiza os elementos do formulário*/
@@ -100,17 +113,9 @@ footer {
   z-index: 3;
 }
 
-@font-face {
-  font-family: 'Jura-Light';
-  src: url('../ASSETS/FONTES/Jura-Light.woff') format('woff'),
-    url('../ASSETS/FONTES/Jura-Light.woff2') format('woof2');
-  font-weight: normal;
-  font-style: normal;
-}
-
 h2 {
   gap: 5px;
-  font-family: 'Jura-Light', sans-serif;
+  font-family: var(--head-title-font);
   text-align: center;
 }
 
@@ -119,19 +124,13 @@ input {
   margin-bottom: 20px;
 }
 
-/* 1) Defina as cores */
-:root {
-  --wave-back-color: #0dffb0;
-  --wave-front-color: #0d4aff;
-}
-
 /* 2) Container geral */
 .wave-container {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 200%;
-  height: 150px;
+  height: 200px;
   overflow: hidden;
   pointer-events: none;
   transform: translateX(-25%);
@@ -144,7 +143,7 @@ input {
   bottom: 0;
   left: 0;
   width: 200%;
-  height: 120px;
+  height: 150px;
   mask: url('data:image/svg+xml;utf8,\<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100">\<path fill="white" d="M0,30 C300,80 900,-20 1200,30 L1200,100 L0,100 Z"/>\</svg>')
     repeat-x 0 0;
   mask-size: auto 200px;
