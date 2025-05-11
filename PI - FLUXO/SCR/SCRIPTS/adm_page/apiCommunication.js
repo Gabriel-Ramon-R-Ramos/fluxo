@@ -5,6 +5,8 @@ async function getUsers() {
 
     if (!token) {
       console.error("Token de autenticação não encontrado.");
+      alert("Token de autenticação não encontrado.");
+      window.location.href = "login.html";
       return null;
     }
 
