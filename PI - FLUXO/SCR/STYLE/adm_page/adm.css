@@ -79,6 +79,10 @@
       align-items: center;
       justify-content: space-between;
       gap: var(--spacing-sm);
+
+      & .access-level {
+        text-transform: capitalize;
+      }
     }
   }
 }
@@ -185,6 +189,7 @@
   }
 }
 
+/* === Modal Gerenciar Usuário === */
 #modal-manage-user {
   min-width: 100%;
   min-height: 100%;
