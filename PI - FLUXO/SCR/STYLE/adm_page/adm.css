@@ -1,5 +1,4 @@
 @import url(../adm_page/utilitarios.css);
-/* @import url(../adm_page/sideBar.css); */
 
 /* = === CSS CODE === = */
 #adm-painel {
@@ -46,7 +45,7 @@
 
 .users-widget {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(25rem, 30rem));
+  grid-template-columns: repeat(3, minmax(25rem, 30rem));
   grid-template-rows: repeat(3, 1fr);
   justify-content: center;
   overflow-y: auto;
