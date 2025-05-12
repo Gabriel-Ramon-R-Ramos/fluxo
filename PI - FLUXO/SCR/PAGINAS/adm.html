@@ -112,15 +112,16 @@
       </header>
 
       <section id="painel-body">
-        <form action="" class="search">
+        <div class="search">
           <input
+            id="search"
             type="text"
             name="user"
             id="search-input"
             placeholder="Pesquise por nome ou login"
           />
-          <i class="fa-solid fa-magnifying-glass"></i>
-        </form>
+          <i id="searchButton" class="fa-solid fa-magnifying-glass"></i>
+        </div>
 
         <div class="overview">
           <div class="total">
@@ -133,9 +134,6 @@
       </section>
 
       <div id="bottom-action-bar">
-        <!-- Js para mostrar a paginação 
-        Cada página terá um total de 9 users
-        -->
         <nav>
           <ul class="pages">
             <li class="active">01</li>

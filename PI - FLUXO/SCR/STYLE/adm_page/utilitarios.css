@@ -274,6 +274,7 @@ button {
   }
 
   & i {
+    cursor: pointer;
     color: var(--text-label-color);
   }
 }
