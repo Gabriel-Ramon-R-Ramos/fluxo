@@ -309,10 +309,7 @@ body {
 }
 
 .botao_editar {
-  position: absolute;
-  left: 1100px;
-  top: 50%;
-  transform: translateY(-50%);
+  position: relative;
   z-index: 10;
 }
 
