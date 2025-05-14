@@ -9,10 +9,12 @@
   box-sizing: border-box;
 }
 
+html,
 body {
   overflow: auto;
   margin: 0;
   padding: 0;
+  display: flex;
 }
 
 .main {
@@ -34,7 +36,7 @@ body {
   top: 0;
   left: calc(-1 * var(--sidebar-width) + var(--sidebar-collapsed-width));
   padding-top: 20px;
-  z-index: 2;
+  z-index: 99;
   transition: left 0.3s ease-in-out;
   font-family: 'Jura', sans-serif;
 }
@@ -291,12 +293,13 @@ body {
 
 .painel_head {
   position: fixed;
+  justify-content: space-between;
   top: 0;
   left: calc(var(--sidebar-collapsed-width) + 20px);
   width: calc(100% - var(--sidebar-collapsed-width) - 40px);
   padding: 10px 0;
   background: #fff;
-  display: grid;
+  display: flex;
   grid-template-columns: auto 1fr auto;
   align-items: center;
   z-index: 1;
@@ -309,7 +312,7 @@ body {
 }
 
 .botao_editar {
-  position: relative;
+  position: static;
   z-index: 10;
 }
 
@@ -556,7 +559,7 @@ body {
 .dados_gerais_edicao {
   max-width: 1000px;
   width: 100%;
-  margin-left: 100px;
+  margin-left: 80px;
   margin-right: auto;
   font-family: 'Jura', sans-serif;
   white-space: nowrap;
@@ -591,6 +594,22 @@ body {
   text-align: center;
   font-family: 'Jura', sans-serif;
   background-color: #bdbdbd;
+}
+
+.coluna_dimensoes input {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #4a4343;
+  font-size: 1rem;
+  width: 150px;
+  text-align: center;
+  font-family: 'Jura', sans-serif;
+  background-color: #bdbdbd;
+}
+
+.linhas_dimensoes {
+  display: flex;
+  gap: 100px;
 }
 
 .linha_precos {
@@ -714,7 +733,7 @@ body {
   text-overflow: ellipsis; /* “…” no fim da última linha */
 
   width: 800px; /* fixa a largura */
-  height: calc(1.2em * 3); /* altura = line-height × número de linhas */
+  height: calc(1.2em); /* altura = line-height × número de linhas */
   line-height: 1.2em; /* ajuste conforme seu design */
 
   white-space: normal; /* permite as quebras automáticas */
