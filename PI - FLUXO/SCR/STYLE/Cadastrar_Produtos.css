@@ -15,6 +15,8 @@ body {
   margin: 0;
   padding: 0;
   display: flex;
+  height: 100%;
+  width: 100%;
 }
 
 .main {
@@ -78,13 +80,14 @@ body {
 }
 
 .content_wrapper {
-  margin-top: 100px;
-  max-width: 1200px;
+  /* margin-top: 100px; */
+  /* max-width: 1200px; */
   margin: 0 auto;
   padding: 20px;
   position: relative;
   transition: margin-left 0.3s ease-in-out;
   margin-left: var(--sidebar-collapsed-width);
+  height: 100%;
 }
 
 .side_bar.open + .content_wrapper {
@@ -523,9 +526,10 @@ body {
 }
 
 .dados_produto_visualizacao {
-  /* display: flex; */
-  /* justify-content: space-between; */
-  margin-bottom: 30px;
+  /* gap: 20px; */
+  display: grid;
+  grid-template-columns: repeat(200px, 1fr);
+  /* margin-bottom: 30px; */
 }
 
 .linhas_visu {
@@ -635,18 +639,6 @@ body {
   font-family: 'Jura', sans-serif;
 }
 
-/* .dados_estoque_edicao {
-  max-width: 1000px;
-  margin-top: 110px;
-  width: 100%;
-  margin-left: 50px;
-  margin-right: auto;
-  padding: 30px;
-  font-family: 'Jura', sans-serif;
-  padding-bottom: 2px;
-  position: absolute;
-} */
-
 .dados_estoque_visu {
   max-width: 1000px;
   margin-top: 115px;
@@ -733,7 +725,7 @@ body {
   text-overflow: ellipsis; /* “…” no fim da última linha */
 
   width: 800px; /* fixa a largura */
-  height: calc(1.2em); /* altura = line-height × número de linhas */
+  height: calc(1em); /* altura = line-height × número de linhas */
   line-height: 1.2em; /* ajuste conforme seu design */
 
   white-space: normal; /* permite as quebras automáticas */
