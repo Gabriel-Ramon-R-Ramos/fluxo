@@ -56,6 +56,41 @@
       </ul>
     </div>
 
+    <div id="mobile-side-bar">
+      <div class="bars">
+        <i id="open-mobile-btn" class="fa-solid fa-bars"></i>
+      </div>
+
+      <div class="content">
+        <ul class="links">
+          <li>
+            <a href="../PAGINAS/Home.html">
+              <i class="fa-solid fa-house"></i>
+              <span class="description">Inicio</span>
+            </a>
+          </li>
+          <li>
+            <a href="../PAGINAS/Produtos.html">
+              <i class="fa-solid fa-bag-shopping"></i>
+              <span class="description">Produtos</span>
+            </a>
+          </li>
+          <li>
+            <a href="../PAGINAS/Controle_Estoque.html">
+              <i class="fa-solid fa-box"></i>
+              <span class="description">Estoque</span>
+            </a>
+          </li>
+          <li class="active">
+            <a href="../PAGINAS/adm.html">
+              <i class="fa-solid fa-gear"></i>
+              <span class="description">Administração</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
     <main id="adm-painel">
       <header id="painel-head">
         <div class="top-action-bar">
@@ -181,8 +216,6 @@
               <label for="add_acesso">Nível de acesso</label>
               <select name="acesso" id="add_acesso">
                 <option value="">-- Escolha uma opção --</option>
-                <option value="admin">Administrador</option>
-                <option value="funcionario">Funcionário</option>
               </select>
             </div>
           </form>
@@ -267,7 +300,7 @@
                 type="text"
                 id="manage_departamento"
                 name="departamento"
-                placeholder="Ex.: Logistca"
+                placeholder="Ex.: Logistica"
               />
             </div>
 
@@ -275,8 +308,6 @@
               <label for="manage_acesso">Nível de acesso</label>
               <select name="acesso" id="manage_acesso">
                 <option value="">-- Escolha uma opção --</option>
-                <option value="admin">Administrador</option>
-                <option value="funcionario">Funcionário</option>
               </select>
             </div>
           </form>

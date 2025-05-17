@@ -4,7 +4,6 @@
 #adm-painel {
   position: relative;
   width: 100vw;
-  height: 100svh;
 }
 
 #painel-head,
@@ -35,7 +34,8 @@
   & .total {
     display: flex;
     flex-flow: column;
-    align-items: start;
+    align-items: center;
+    gap: var(--spacing-xs);
     padding: var(--spacing-xs) var(--spacing-sm);
     border-radius: var(--radius-md);
     border-left: solid 5px var(--details-color);
@@ -245,5 +245,21 @@
       justify-content: space-between;
       gap: var(--spacing-md);
     }
+  }
+}
+
+/* === Responsividade Mobile === */
+@media screen and (max-width: 766px) {
+  #painel-head {
+    padding: var(--spacing-sm);
+  }
+
+  .users-widget {
+    max-height: calc(3 * 10rem + calc(3 * 3rem));
+    grid-template-columns: 1, minmax(25rem, 30rem);
+    padding: var(--spacing-sm);
+    border-radius: 1rem;
+    box-shadow: inset 0 0.5rem 1rem rgba(0, 0, 0, 10%),
+      inset 0 -1rem 1rem rgba(0, 0, 0, 10%);
   }
 }
