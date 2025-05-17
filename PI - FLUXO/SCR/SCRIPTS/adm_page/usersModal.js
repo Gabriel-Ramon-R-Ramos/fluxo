@@ -1,3 +1,7 @@
+// === Importações ===
+
+import { saveUserCreation } from "./apiCommunication.js";
+
 // Seleciona o elemento pai que contém os botões
 const body = document.body;
 
@@ -7,6 +11,13 @@ body.addEventListener("click", (event) => {
   if (event.target.id === "open-modal-add-user") {
     const modal_addUser = document.getElementById("modal-add-user");
     modal_addUser.classList.toggle("active");
+
+    // Adiciona o evento de salvar
+    const saveButton = document.querySelector("#modal-add-user .save-btn");
+    saveButton.onclick = (event) => {
+      event.preventDefault();
+      saveUserCreation();
+    };
   }
 
   if (
