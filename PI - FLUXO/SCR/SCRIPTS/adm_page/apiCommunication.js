@@ -16,6 +16,9 @@ if (!token) {
 
 // Função para buscar todos os usuários da API
 // Retorna: todos os usuários
+// page: primeira página a ser lida
+// size: tamanho dos dados por página
+// search: filtro de pesquisa
 async function getAllUsers(page = 1, size = 6, search = "") {
   try {
     const response = await fetch(
@@ -34,12 +37,14 @@ async function getAllUsers(page = 1, size = 6, search = "") {
         localStorage.removeItem("token");
         window.location.href = "index.html";
       }
-      throw new Error(`Erro na requisição: ${response.status}`);
+      throw new Error(
+        `Código de resposta http do servidor:  ${response.status}`
+      );
     }
 
     return await response.json();
   } catch (error) {
-    console.error("Erro ao buscar dados:", error);
+    console.error("Erro ao buscar os dados dos usuários:", error);
     return null;
   }
 }
@@ -57,17 +62,20 @@ async function getRoles() {
     });
 
     if (!response.ok) {
-      throw new Error(`Erro ao pegar os níveis de acesso: ${response.status}`);
+      throw new Error(
+        `Código de resposta http do servidor: ${response.status}`
+      );
     }
 
     return response.json();
   } catch (error) {
-    console.error(`Erro ao fazer a requisição: ${error}`);
+    console.error(`Erro ao pegar os níveis de acesso: ${error}`);
   }
 }
 
 // Função para pegar os dados de 1 usuário
 // Retorna: os dados do usuário
+// userId: indentificador do usuário
 async function getUserData(userId) {
   try {
     const response = await fetch(`${URL}/usuarios/${userId}`, {
@@ -78,12 +86,14 @@ async function getUserData(userId) {
       },
     });
     if (!response.ok) {
-      throw new Error(`Erro ao buscar usuário: ${response.status}`);
+      throw new Error(
+        `Código de resposta http do servidor: ${response.status}`
+      );
     }
 
     return await response.json();
   } catch (error) {
-    console.error(`Erro ao buscar usuário ${erro}`);
+    console.error(`Erro ao buscar os dados do usuário ${error}`);
   }
 }
 
@@ -102,7 +112,9 @@ async function patchUserData(userId, data) {
     });
 
     if (!response.ok) {
-      throw new Error(`Erro ao salvar alterações: ${response.status}`);
+      throw new Error(
+        `Código de resposta http do servidor: ${response.status}`
+      );
     }
   } catch (error) {
     console.error(`Erro ao atualizar os dados do usuário ${error}`);
@@ -122,8 +134,35 @@ export async function addUsers(data) {
       },
       body: JSON.stringify(data),
     });
+
+    if (!response.ok) {
+      throw new Error(`Código de resposta http do servidor: ${response.stat}`);
+    }
   } catch (error) {
-    console.error(`Não foi adiciona um novo usuário ${error}`);
+    console.error(`Erro ao adicionar um novo usuário ${error}`);
+  }
+}
+
+// Função para deletar (DELETE) um usuário cadastradi
+// Retorno: NONE
+// userId: indentificador do usuário
+async function deleteUsers(userId) {
+  try {
+    const response = await fetch(`${URL}/usuarios/apagar/${userId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(
+        `Código de resposta http do servidor: ${response.status}`
+      );
+    }
+  } catch (error) {
+    console.error(`Não foi possível deletar o usuário: ${error}`);
   }
 }
 
@@ -185,9 +224,9 @@ async function insertUsersData(userId) {
 
   // Adiciona o evento de deletar
   const removeButton = document.querySelector("#modal-manage-user .remove-btn");
-  saveButton.onclick = (event) => {
+  removeButton.onclick = (event) => {
     event.preventDefault();
-    saveUserChanges(userId);
+    removeUser(userId);
   };
 }
 
@@ -238,6 +277,21 @@ async function saveUserChanges(userId) {
     await initialize();
   } catch (error) {
     console.error(`Erro ao salvar alterações: ${error}`);
+  }
+}
+
+// Remove um usuário cadastrado
+async function removeUser(userId) {
+  try {
+    // Remove o usuário
+    await deleteUsers(userId);
+
+    // Fecha o modal e atualiza a lista de usuários
+    const modal = document.getElementById("modal-manage-user");
+    modal.classList.remove("active");
+    await initialize();
+  } catch (error) {
+    console.error(`Erro ao remover um usuário ${error}`);
   }
 }
 

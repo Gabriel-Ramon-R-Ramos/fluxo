@@ -8,11 +8,12 @@
   /* === Cores === */
   --primary-color: #0d4aff;
   --details-color: #0dffb0;
-  --white-color: #fff;
   --text-color: #000;
   --label-color: #dedede;
   --text-label-color: #4a4343;
   --bg-color: #eaeaea;
+  --white-color: #fff;
+  --danger-color: #ff1228;
   /* === Tipografia === */
   --font-size-xs: 0.694rem;
   --font-size-sm: 0.833rem;
@@ -218,12 +219,31 @@ button {
   border: none;
   cursor: pointer;
   color: var(--details-color);
+  border: solid 0.1rem var(--primary-color);
   background-color: var(--primary-color);
   transition: background-color 0.3s ease, color 0.3s ease;
 
   &:hover {
     color: var(--primary-color);
+    border: solid 0.1rem var(--details-color);
     background-color: var(--details-color);
+  }
+}
+
+.danger-button {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-xs);
+  border: none;
+  cursor: pointer;
+  color: var(--white-color);
+  border: solid 0.1rem var(--white-color);
+  background-color: var(--danger-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  &:hover {
+    color: var(--danger-color);
+    border: solid 0.1rem var(--danger-color);
+    background-color: var(--white-color);
   }
 }
 
