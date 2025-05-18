@@ -198,6 +198,7 @@ async function populateRolesSelects() {
 }
 
 // Função inserir os dados do usuário quando clicar em gerenciar
+// Responsável por configurar os Listener de salvar e deletar
 async function insertUsersData(userId) {
   try {
     await populateRolesSelects();
@@ -217,17 +218,17 @@ async function insertUsersData(userId) {
 
   // Adiciona o evento de salvar
   const saveButton = document.querySelector("#modal-manage-user .save-btn");
-  saveButton.onclick = (event) => {
+  saveButton.addEventListener("click", (event) => {
     event.preventDefault();
     saveUserChanges(userId);
-  };
+  });
 
   // Adiciona o evento de deletar
   const removeButton = document.querySelector("#modal-manage-user .remove-btn");
-  removeButton.onclick = (event) => {
+  removeButton.addEventListener("click", (event) => {
     event.preventDefault();
     removeUser(userId);
-  };
+  });
 }
 
 // Salvar a adição de um novo usuário
@@ -283,6 +284,9 @@ async function saveUserChanges(userId) {
 // Remove um usuário cadastrado
 async function removeUser(userId) {
   try {
+    // Alerta de confirmação
+    const confirmar = confirm("Deseja realmente remover esse usuário?");
+    if (!confirmar) return;
     // Remove o usuário
     await deleteUsers(userId);
 
