@@ -1,207 +1,217 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Controle de estoque</title>
-    <link rel="stylesheet" href="../STYLE/Controle_Estoque.css">
-    <link href="https://fonts.googleapis.com/css2?family=Jura&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Controle de estoque teste</title>
+  <link rel="stylesheet" href="../STYLE/Controle_Estoque.css">
+  <link href="https://fonts.googleapis.com/css2?family=Jura&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
 
 </head>
+
 <body>
-    <button id="burguer" class="burguer">☰</button>
-    <div class="side_bar">
-        <div class="ondinha">
-          <img src="../ASSETS/IMAGENS/ondinha.png" alt="logo" />
-        </div>
+  <button id="burguer" class="burguer">☰</button>
+  <div class="side_bar">
+    <div class="ondinha">
+      <img src="../ASSETS/IMAGENS/ondinha.png" alt="logo" />
+    </div>
+    <ul>
+      <li class="espaco_home"><a href="../PAGINAS/Produtos.html">Home</a><img class="img_home"
+          src="../ASSETS/ÍCONES/Home.png" alt="home"></li>
+      <li class="espaco_cadastro"><a href="../PAGINAS/Cadastro_Produtos.html">Produtos</a><img class="img_produtos"
+          src="../ASSETS/ÍCONES/produtos.png" alt="produtos">
+      </li>
+
+      <li class="espaco_consulta"><a href="../PAGINAS/Controle_Estoque.html">Estoque</a><img class="img_estoque"
+          src="../ASSETS/ÍCONES/estoque.png" alt="estoque">
+      </li>
+
+      <li class="espaco_ajuda"><a href="../PAGINAS/adm.html">Conta</a><img class="img_config"
+          src="../ASSETS/ÍCONES/config.png" alt="config">
+      </li>
+    </ul>
+  </div>
+  <main class="home">
+    <section class="home_head">
+      <nav class="breadcrumb">
         <ul>
-          <li class="espaco_home"><a href="../PAGINAS/Home.html">Home</a><img class="img_home" src="../ASSETS/ÍCONES/Home.png" alt="home"></li>
-          <li class="espaco_cadastro"><a href="../PAGINAS/Produtos.html">Cadastro</a><img class="img_produtos" src="../ASSETS/ÍCONES/produtos.png" alt="produtos">
-          </li>
-          
-          <li class="espaco_consulta"><a href="../PAGINAS/Controle_Estoque.html">Estoque</a><img class="img_estoque" src="../ASSETS/ÍCONES/estoque.png" alt="estoque">
-          </li>
-  
-          <li class="espaco_ajuda"><a href="../PAGINAS/adm.html">Conta</a><img class="img_config" src="../ASSETS/ÍCONES/config.png" alt="config">
-          </li>
+          <li><a href="../PAGINAS/Produtos.html">Início</a></li>
+          <li>Controle de Estoque</li>
         </ul>
-     </div>
-        <main class="home">
-            <section class="home_head">
-                <nav class="breadcrumb">
-                    <ul>
-                        <li><a href="../PAGINAS/Produtos.html">Início</a></li> 
-                        <li>Controle de Estoque</li>
-                    </ul>
-                    <button class="inc-lancamento" id="botaoIncluir">Incluir lancamento</button>
-                </nav>
-                <div class="incluir-sidebar" id="incluirSidebar">
-                  <div>
-                    <p class="text-lancamento">Lançamento de Estoque</p>
-                  <button class="close-btn" id="closeIncluirSidebar">
-                    <span>Fechar</span>
-                    <img src="..//ASSETS/ÍCONES/close.png" alt="Fechar" class="x-fechar">
+        <button class="inc-lancamento" id="botaoIncluir">Incluir lancamento</button>
+      </nav>
+      <div class="incluir-sidebar" id="incluirSidebar">
+        <div class="sidebar-head">
+          <p class="text-lancamento">Lançamento de Estoque</p>
+          <button class="close-btn" id="closeIncluirSidebar">
+            <span>Fechar</span>
+            <img src="..//ASSETS/ÍCONES/close.png" alt="Fechar" class="x-fechar">
+          </button>
+        </div>
+
+        <section class="sidebar-conteudo" id="formulario">
+
+          <div class="linha">
+            <div class="campo-tipo">
+              <label for="tipo">Tipo:</label>
+              <select id="tipo" name="tipo">
+                <option value="entrada">Entrada</option>
+                <option value="saida">Saída</option>
+              </select>
+            </div>
+
+            <!-- Linha: Seleção de produto -->
+            <div class="campo-selecaoproduto">
+              <label for="produto">Selecione o produto:</label>
+              <select id="produto" name="produto">
+                <option value="">Selecione...</option>
+                <option value="produto1">Produto 1</option>
+                <option value="produto2">Produto 2</option>
+
+              </select>
+            </div>
+          </div>
+
+
+          <!-- Linha: Quantidade | Preço Unitário | Lote -->
+          <div class="linha">
+            <div class="campo">
+              <label for="quantidade">Quantidade:</label>
+              <input type="number" id="quantidade" name="quantidade" placeholder="Ex: 50" min="0">
+            </div>
+
+            <div class="campo-preco">
+              <label for="preco">Preço Unitário:</label>
+              <input type="number" id="preco" name="preco" step="0.01" placeholder="Ex: 40,68" min="0">
+            </div>
+
+            <div class="campo-lote">
+              <label for="lote">Lote:</label>
+              <input type="text" id="lote" name="lote" placeholder="Ex: 65A2CB">
+            </div>
+          </div>
+          <!-- Linha: Código fornecedor | Fornecedor -->
+
+          <div class="linha-fornecedor">
+              
+            <div class="campo">
+              <label for="localizacao-lote">Localização do Lote:</label>
+              <input type="text" id="localicaoLote" name="localizacaoLote" placeholder="Ex: Setor 2">
+            </div>
+
+            <div class="campo">
+              <label for="codigoFornecedor">Código Fornecedor:</label>
+              <input type="text" id="codigoFornecedor" name="codigoFornecedor" placeholder="Ex: 12345">
+            </div>
+
+            <div class="campo">
+              <label for="fornecedor">Fornecedor:</label>
+              <input type="text" id="fornecedor" name="fornecedor" placeholder="Ex: Insider"></input>
+            </div>
+          </div>
+
+          <div class="linha">
+            <div class="campo" id="data-campo">
+              <label for="data">Data de Validade:</label>
+              <input type="date" id="data-val" name="data">
+            </div>
+          </div>
+
+          <!-- Linha: Observação -->
+          <div class="campo-obs">
+            <label for="observacao">Observação:</label>
+            <textarea id="observacao" name="observacao" rows="3" placeholder="Ex: Reposição de Estoque"></textarea>
+          </div>
+          <div class="botoes-acao">
+            <button type="submit" class="btn-salvar" id="btnSalvar">Salvar</button>
+            <button type="button" class="btn-cancelar" id="cancelarIncluir">Cancelar</button>
+          </div>
+        </section>
+      </div>
+
+      <section class="head-title">
+        <h1 id="tituloProduto">Carregando...</h1>
+      </section>
+      <section class="nav-tabs">
+        <div class="filter-nav">
+          <button class="filter active" id="lancamento-filter">Lancamentos</button>
+          <button class="filter" id="reserva-filter">Reserva</button>
+          <div class="active-indicator"></div>
+        </div>
+      </section>
+    </section>
+
+    <section class="dados-estoque">
+      <section class="barra-estoque">
+        <div class="estoque-qtd">
+          <p class="estoque-tipo">Saldo físico do depósito:</p>
+          <p class="estoque-valor" id="estoqueFisico">-</p>
+        </div>
+        <div class="estoque-qtd">
+          <p class="estoque-tipo">Total reservado:</p>
+          <p class="estoque-valor" id="estoqueReservado">-</p>
+        </div>
+        <div class="estoque-qtd">
+          <p class="estoque-tipo">Total disponível:</p>
+          <p class="estoque-valor" id="estoqueDisponivel">-</p>
+        </div>
+      </section>
+
+      <section class="tabela">
+        <table>
+          <thead id="tabela-head">
+            <tr>
+              <th class="th-opcoes"></th>
+              <th>Data e hora</th>
+              <th>Entrada</th>
+              <th>Saida</th>
+              <th>valor</th>
+              <th>Observação</th>
+              <th>Origem</th>
+            </tr>
+          </thead>
+          <tbody id="tabela-produtos">
+            <tr>
+              <td class="menu-opcoes">
+                <div class="opcoes-container">
+                  <button class="botao-opcoes">
+                    <img src="../ASSETS/ÍCONES/line-dot.png" alt="Opções" class="icone-opcoes">
                   </button>
+                  <div class="menu-acao">
+                    <ul>
+                      <li>Remover lançamento</li>
+                    </ul>
                   </div>
-
-                  <section class="sidebar-conteudo">
-
-                  <div class="linha">
-                    <div class="campo">
-                      <label for="tipo">Tipo:</label>
-                      <select id="tipo" name="tipo">
-                        <option value="entrada">Entrada</option>
-                        <option value="saida">Saída</option>
-                      </select>
-                    </div>
-                
-                    <!-- Linha: Seleção de produto -->
-                  <div class="campo-selecaoproduto">
-                    <label for="produto">Selecione o produto:</label>
-                    <select id="produto" name="produto">
-                      <option value="">Selecione...</option>
-                      <option value="produto1">Produto 1</option>
-                      <option value="produto2">Produto 2</option>
-              
-                    </select>
-                  </div>
-                  </div>
-              
-                
-                  <!-- Linha: Quantidade | Preço Unitário | Lote -->
-                  <div class="linha">
-                    <div class="campo">
-                      <label for="quantidade">Quantidade:</label>
-                      <input type="number" id="quantidade" name="quantidade" placeholder="Ex: 50" min="0">
-                    </div>
-                
-                    <div class="campo">
-                      <label for="preco">Preço Unitário:</label>
-                      <input type="number" id="preco" name="preco" step="0.01" placeholder="Ex: 40,68" min="0">
-                    </div>
-                
-                    <div class="campo">
-                      <label for="lote">Lote:</label>
-                      <input type="text" id="lote" name="lote" placeholder="Ex: 65A2CB">
-                    </div>
-                  </div>
-                
-                  <!-- Linha: Código fornecedor | Fornecedor -->
-                  <div class="linha">
-                    <div class="campo">
-                      <label for="codigoFornecedor">Código Fornecedor:</label>
-                      <input type="text" id="codigoFornecedor" name="codigoFornecedor" placeholder="Ex: 12345">
-                    </div>
-                
-                    <div class="campo">
-                      <label for="fornecedor">Fornecedor:</label>
-                      <input type="text" id="fornecedor" name="fornecedor" placeholder="Ex: Insider"></input>
-                    </div>
-                  </div>
-
-                  <div class="linha">
-                    <div class="campo" id="data-campo">
-                      <label for="data">Data de Validade:</label>
-                      <input type="date" id="data" name="data">
-                    </div>
-                  </div>
-                
-                  <!-- Linha: Observação -->
-                  <div class="campo-obs">
-                    <label for="observacao">Observação:</label>
-                    <textarea id="observacao" name="observacao" rows="3" placeholder="Ex: Reposição de Estoque"></textarea>
-                  </div>
-                  <div class="botoes-acao">
-                    <button type="submit" class="btn-salvar">Salvar</button>
-                    <button type="button" class="btn-cancelar" id="cancelarIncluir">Cancelar</button>
-                  </div>
-                  </section>
                 </div>
-                
-                <section class="head-title">
-                    <h1>Nome do Produto</h1>
-                  </section>
-                <section class="nav-tabs">
-                     <div class="filter-nav">
-                      <button class="filter active" id="lancamento-filter">Lancamentos</button>
-                      <button class="filter" id="reserva-filter">Reserva</button>
-                      <div class="active-indicator"></div>
-                     </div>
-                </section>
-            </section>
+              </td>
 
-            <section class="dados-estoque">
-              <section class="barra-estoque">
-                  <div class="estoque-qtd">
-                    <p class="estoque-tipo">Saldo físico do depósito:</p>
-                    <p class="estoque-valor">120</p>
-                  </div>
-                  <div class="estoque-qtd">
-                    <p class="estoque-tipo">Total reservado:</p>
-                    <p class="estoque-valor">30</p>
-                  </div>
-                  <div class="estoque-qtd">
-                    <p class="estoque-tipo">Total disponível:</p>
-                    <p class="estoque-valor">90</p>
-                  </div>
-              </section>
-
-              <section class="tabela">
-                <table>
-                  <thead id="tabela-head">
-                    <tr>
-                      <th class="th-opcoes"></th>
-                      <th>Data e hora</th>
-                      <th>Entrada</th>
-                      <th>Saida</th>
-                      <th>valor</th>
-                      <th>Observação</th>
-                      <th>Origem</th>
-                    </tr>
-                  </thead>
-                  <tbody id="tabela-produtos">
-                    <tr>
-                      <td class="menu-opcoes">
-                        <div class="opcoes-container">
-                          <button class="botao-opcoes">
-                            <img src="../ASSETS/ÍCONES/line-dot.png" alt="Opções" class="icone-opcoes">
-                          </button>
-                          <div class="menu-acao">
-                            <ul>
-                              <li>Editar</li>
-                              <li>Remover lançamento</li>
-                              <li>Detalhes</li>
-                            </ul>
-                          </div>
-                        </div>
-                      </td>
-                      
-                      <td>05/03/2025 - 11:00</td>
-                      <td>00,00</td>
-                      <td>10,00</td>
-                      <td>16,43</td>
-                      <td>"comentario"</td>
-                      <td>Venda</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </section>
-              <div id="paginacao" class="paginacao-container"></div>
-            </section>
-            <section>
-                <footer>
-                  <p>fluxo.log © Todos os direitos reservados</p>
-                </footer>
-              </section>
-
-        </main>
-        <script src="../SCRIPTS/controleEstoque/controle_estoque.js"></script>
-        <script src="../SCRIPTS/produtos/produtosidebar.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-        <!--arquivo de idioma português -->
-<script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.9/dist/l10n/pt.js"></script>
+              <td>05/03/2025 - 11:00</td>
+              <td>00,00</td>
+              <td>10,00</td>
+              <td>16,43</td>
+              <td>"comentario"</td>
+              <td>Venda</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <div id="paginacao" class="paginacao-container"></div>
+    </section>
+    <section>
+      <footer>
+        <p>fluxo.log © Todos os direitos reservados</p>
+      </footer>
+    </section>
+  </main>
+  <script src="../SCRIPTS/produtos/produtosidebar.js"></script>
+  <script src="../SCRIPTS/controleEstoque/controle_estoque.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <!--arquivo de idioma português -->
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.9/dist/l10n/pt.js"></script>
 
 </body>
+
 </html>

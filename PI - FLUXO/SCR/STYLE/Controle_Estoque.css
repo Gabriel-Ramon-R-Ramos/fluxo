@@ -307,8 +307,14 @@ h1 {
 .sidebar-conteudo{
   font-family: 'Jura', sans-serif;
   font-weight: 700;
-
 }
+
+.sidebar-head{
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
 .incluir-sidebar .linha {
   display: flex;
   gap: 12px;
@@ -323,7 +329,23 @@ h1 {
 
 }
 
-
+.incluir-sidebar .campo-tipo{
+  display: flex;
+  flex-direction: column;
+}
+.incluir-sidebar .campo-preco {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.incluir-sidebar .campo-lote {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.linha-fornecedor{
+  gap:10px;
+}
 
 /*icone da data no input data*/
 
@@ -415,7 +437,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   margin-bottom: 12px;
   display: flex;
   flex-direction: column;
-  width: 400px;
+  flex:1
 }
 
 .incluir-sidebar label {

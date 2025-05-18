@@ -248,11 +248,13 @@ input[type="checkbox"]:checked {
 
 /*paginação da tabela*/
 .paginacao-container {
+  position: fixed;
   display: flex;
   width: 100%;
   height: 50px;
   padding-left: 100px;
   justify-content:left;
+  bottom: 0;
   
 }
 
