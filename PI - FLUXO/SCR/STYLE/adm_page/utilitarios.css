@@ -355,11 +355,6 @@ button {
       display: flex;
       flex-flow: column;
       gap: var(--spacing-lg);
-
-      & li {
-        display: flex;
-        align-items: center;
-      }
     }
   }
 
