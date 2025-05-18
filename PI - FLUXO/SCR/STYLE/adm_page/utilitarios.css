@@ -106,7 +106,8 @@ button {
     & li {
       padding: var(--spacing-xs);
 
-      & a {
+      & a,
+      &#logout {
         display: flex;
         align-items: center;
         font-size: var(--spacing-lg);
@@ -156,11 +157,15 @@ button {
       }
     }
 
-    & .links a {
-      gap: var(--spacing-sm);
+    & .links {
+      & a,
+      & #logout {
+        gap: var(--spacing-sm);
+      }
 
       & .description {
         width: 100%;
+        cursor: pointer;
       }
     }
 

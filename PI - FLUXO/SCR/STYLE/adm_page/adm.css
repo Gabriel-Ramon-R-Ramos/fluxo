@@ -255,7 +255,7 @@
   }
 
   .users-widget {
-    max-height: calc(3 * 10rem + calc(3 * 3rem));
+    max-height: calc(3 * 9rem + calc(3 * 3rem));
     grid-template-columns: 1, minmax(25rem, 30rem);
     padding: var(--spacing-sm);
     border-radius: 1rem;
