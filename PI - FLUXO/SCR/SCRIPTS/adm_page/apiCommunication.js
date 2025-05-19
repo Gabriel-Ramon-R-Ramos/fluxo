@@ -9,7 +9,7 @@ let paginaAtual = 1;
 
 // Verifica se o existem um token
 if (!token) {
-  window.location.href = "index.html";
+  window.location.href = "https://fluxo-uqpq.onrender.com/";
 }
 
 // === Chamadas API ===
