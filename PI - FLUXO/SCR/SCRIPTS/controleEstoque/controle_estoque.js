@@ -153,7 +153,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  //envio do formulario pra api
+  //----Conexao com a API---
+
+
+  //envio dos lancamentos
 
 document.querySelector('.btn-salvar').addEventListener('click', async (e) => {
   e.preventDefault();
@@ -255,6 +258,47 @@ document.querySelector('.btn-salvar').addEventListener('click', async (e) => {
 
 
 
+async function getProducts() {
+  try {
+    const response = await fetch(`${URL}/produtos/todos`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Código de resposta http do servidor: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data.productsInPage; // <- importante!
+  } catch (error) {
+    console.error(`Erro ao listar produtos: ${error}`);
+  }
+}
+
+
+// Função para popular os selects de acesso dinamicamente
+async function populateProdutoSelects() {
+  const products = await getProducts();
+  if (!products) return;
+
+  const addSelect = document.getElementById("produto");
+
+  // Limpa as opções antigas (exceto a primeira)
+  addSelect.innerHTML = '<option value="">-- Escolha um produto --</option>';
+
+  products.forEach((product) => {
+    const option = document.createElement("option");
+    option.value = product.id; // ou product.productSKU se preferir
+    option.textContent = product.productName;
+    addSelect.appendChild(option);
+  });
+}
+
+populateProdutoSelects();
 
 });
 
