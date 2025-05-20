@@ -749,7 +749,7 @@ footer {
 
 @media (max-width: 768px) {
   .side_bar {
-    width: 200px; /* Menor largura da sidebar em telas pequenas */
+    width: 190px; /* Menor largura da sidebar em telas pequenas */
   }
 
   .dados_gerais,
@@ -770,4 +770,112 @@ footer {
 
 .filter.hidden {
   display: none !important;
+}
+
+@media (max-width: 766px) {
+  .main {
+    height: 100%;
+    overflow: auto;
+  }
+
+  .linhas,
+  .linhas_visu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 20px;
+    margin-left: 40px;
+  }
+
+  .coluna,
+  .coluna_visu,
+  .coluna_dimensoes {
+    flex: 0 0 calc((100% - 1rem) / 2);
+    box-sizing: border-box;
+  }
+
+  .coluna:nth-child(2n + 1),
+  .coluna_visu:nth-child(2n + 1),
+  .coluna_dimensoes:nth-child(2n + 1),
+  .item:nth-child(2n + 1) {
+    clear: left;
+  }
+
+  .coluna input,
+  .coluna_dimensoes input,
+  .item input,
+  .descricao {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .coluna_visu div {
+    width: 100%;
+  }
+
+  .content_wrapper {
+    margin-left: 0;
+    padding: 1rem;
+  }
+
+  /* .action_bar {
+    left: 0 !important;
+    width: 100% !important;
+    flex-direction: column;
+    gap: 0.5rem;
+  } */
+
+  #titulo_dimensoes {
+    margin-left: 40px;
+  }
+
+  .dados_gerais_edicao {
+    margin-left: auto;
+  }
+
+  .dados_estoque_visu {
+    margin-left: 80px;
+    margin-top: 100px;
+  }
+
+  .painel_body {
+    height: 100%;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  .dados_produto_visualizacao {
+    height: 100%;
+  }
+  .itens_estoque,
+  .itens_fornecedor,
+  .itens_validade {
+    flex-direction: column;
+    gap: 1rem;
+    display: block;
+  }
+
+  .coluna_estoque:nth-child(2n + 1),
+  .coluna_estoque:nth-child(2n + 1),
+  .coluna_estoque:nth-child(2n + 1),
+  .item:nth-child(2n + 1) {
+    clear: left;
+  }
+
+  .produto_header {
+    position: relative;
+    display: grid;
+    margin: 0;
+  }
+
+  .nav-tabs {
+    /* margin-top: 50px; */
+  }
+
+  .dados_gerais_visualizar {
+    margin-top: 50px;
+  }
+  .imagem_produto {
+    display: none;
+  }
 }
