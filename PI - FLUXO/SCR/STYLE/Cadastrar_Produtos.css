@@ -256,7 +256,7 @@ body {
   font-size: 20px;
   background-color: #ffffff;
   font-weight: 700;
-  padding: 10px;
+  /* padding: 10px; */
   white-space: nowrap;
   display: flex;
   justify-content: space-between;
@@ -305,7 +305,7 @@ body {
   display: flex;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  z-index: 1;
+  z-index: 99;
   transition: left 0.3s ease-in-out, width 0.3s ease-in-out;
 }
 
@@ -328,11 +328,12 @@ body {
   align-items: center;
   gap: 20px;
   margin: 20px 40px 20px 40px;
-  position: absolute;
-  top: 65px;
-  left: 60px;
+  /* position: relative; Removi para teste */
+  /* top: 65px;
+  left: 60px; */
   width: 100%;
   z-index: 10;
+  margin-top: 50px;
 }
 
 .img_produto {
@@ -414,8 +415,8 @@ body {
   flex-direction: column;
   justify-content: center;
   position: relative;
-  align-items: center;
-  margin-top: 150px;
+  /* align-items: center; */
+  /* margin-top: 150px; */
   width: 100%;
   /* gap: 100px; */
 }
@@ -423,9 +424,9 @@ body {
 /* Barra de Filtros */
 .nav-tabs {
   border-bottom: 2px solid #ddd;
-  margin-top: 30px;
-  margin-left: 40px;
-  width: 90%;
+  /* margin-top: 30px; */
+  margin-left: auto;
+  width: 100%;
 }
 .filter-nav {
   display: flex;
@@ -516,9 +517,9 @@ body {
 .dados_gerais_visualizar {
   max-width: 1000px;
   width: 100%;
-  margin-left: 0px;
+  margin-left: 40px;
   margin-right: auto;
-  margin-top: 80px;
+  /* margin-top: 40px; */
   font-family: 'Jura', sans-serif;
   white-space: nowrap;
   padding-bottom: 2px;
@@ -529,6 +530,7 @@ body {
   /* gap: 20px; */
   display: grid;
   grid-template-columns: repeat(200px, 1fr);
+  margin-top: 15px;
   /* margin-bottom: 30px; */
 }
 
@@ -552,7 +554,7 @@ body {
   position: relative;
   border-bottom: 2px solid #bdbdbd;
   margin-bottom: 20px;
-  width: 1030px;
+  width: auto;
 }
 
 .dimensoes_peso label {
@@ -639,11 +641,15 @@ body {
   font-family: 'Jura', sans-serif;
 }
 
+.dados_produto {
+  /* margin-top: 15px; */
+}
+
 .dados_estoque_visu {
   max-width: 1000px;
-  margin-top: 115px;
+  margin-top: 40px;
   width: 100%;
-  margin-left: 0px;
+  margin-left: 40px;
   margin-right: auto;
   font-family: 'Jura', sans-serif;
   position: absolute;
@@ -673,11 +679,19 @@ body {
 }
 
 /* Adiciona estilo para os agrupamentos internos */
-.itens_estoque,
-.itens_validade,
+.itens_estoque {
+  display: flex;
+  gap: 205px;
+  margin-top: 10px;
+}
+.itens_validade {
+  display: flex;
+  gap: 180px;
+  margin-top: 10px;
+}
 .itens_fornecedor {
   display: flex;
-  gap: 60px;
+  gap: 150px;
   margin-top: 10px;
 }
 
@@ -774,7 +788,7 @@ footer {
 
 @media (max-width: 766px) {
   .main {
-    height: 100%;
+    /* height: 100%; */
     overflow: auto;
   }
 
@@ -784,7 +798,7 @@ footer {
     flex-wrap: wrap;
     gap: 1rem;
     margin-bottom: 20px;
-    margin-left: 40px;
+    /* margin-left: 40px; */
   }
 
   .coluna,
@@ -814,7 +828,7 @@ footer {
   }
 
   .content_wrapper {
-    margin-left: 0;
+    /* margin-left: 0; */
     padding: 1rem;
   }
 
@@ -825,27 +839,30 @@ footer {
     gap: 0.5rem;
   } */
 
-  #titulo_dimensoes {
-    margin-left: 40px;
-  }
+  /* #titulo_dimensoes {
+    /* margin-left: 40px; 
+  } 
+  */
 
   .dados_gerais_edicao {
     margin-left: auto;
   }
 
   .dados_estoque_visu {
-    margin-left: 80px;
+    margin-left: auto;
     margin-top: 100px;
   }
 
   .painel_body {
-    height: 100%;
+    display: flex;
+    /* height: 100%; */
     margin-top: auto;
     margin-bottom: auto;
   }
 
   .dados_produto_visualizacao {
     height: 100%;
+    margin-top: 15px;
   }
   .itens_estoque,
   .itens_fornecedor,
@@ -866,16 +883,25 @@ footer {
     position: relative;
     display: grid;
     margin: 0;
+    top: 30px;
+    gap: 10px;
+    padding: 10px;
   }
 
   .nav-tabs {
-    /* margin-top: 50px; */
+    margin-top: auto;
   }
 
   .dados_gerais_visualizar {
     margin-top: 50px;
+    margin-left: auto;
   }
-  .imagem_produto {
-    display: none;
+
+  .painel_head {
+    left: calc(var(--sidebar-collapsed-width));
+  }
+
+  .dados_produto {
+    gap: 20px;
   }
 }
