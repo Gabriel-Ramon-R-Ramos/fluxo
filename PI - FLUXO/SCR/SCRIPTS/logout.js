@@ -10,7 +10,7 @@ document.getElementById("logout").addEventListener("click", () => {
   localStorage.removeItem("token");
 
   // Redireciona para a tela de login
-  window.location.href = "index.html";
+  window.location.href = "https://fluxo-uqpq.onrender.com";
 });
 
 // === Para Mobile ===
@@ -23,5 +23,5 @@ document.getElementById("logout-mobile").addEventListener("click", () => {
   localStorage.removeItem("token");
 
   // Redireciona para a tela de login
-  window.location.href = "index.html";
+  window.location.href = "https://fluxo-uqpq.onrender.com";
 });
