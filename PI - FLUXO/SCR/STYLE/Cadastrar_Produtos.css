@@ -540,7 +540,7 @@ body {
 }
 
 .coluna_visu {
-  width: 30%;
+  width: 100%;
   flex-direction: column;
   display: flex;
 }

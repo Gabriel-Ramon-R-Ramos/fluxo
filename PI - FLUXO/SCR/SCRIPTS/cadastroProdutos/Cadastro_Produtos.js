@@ -249,3 +249,53 @@ function updateLotInfo(selectedLotId) {
   preencherCampo('nome_fornecedor', selectedLot.supplierInfo?.supplierName);
   preencherCampo('codigo_fornecedor', selectedLot.supplierInfo?.supplierCode);
 }
+
+/* ------- Função de POST e PACTH ------- */
+async function salvarProduto() {
+  const produto = {
+    productInfo: {
+      productName: document.getElementById('nome_produto').value,
+      productSKU: document.getElementById('SKU').value,
+      productDescription: document.getElementById('descricao').value,
+      productCategory: document.getElementById('categoria').value,
+      productBrand: document.getElementById('marca').value,
+      productModel: document.getElementById('modelo').value,
+    },
+    priceInfo: {
+      productPrice: parseFloat(
+        document.getElementById('preco_venda').value.replace(',', '.')
+      ),
+    },
+    technicalInfo: {
+      productWidth: parseFloat(document.getElementById('largura').value),
+      productHeight: parseFloat(document.getElementById('altura').value),
+      productLength: parseFloat(document.getElementById('comprimento').value),
+      productWeight: parseFloat(document.getElementById('peso').value),
+    },
+  };
+
+  try {
+    const url = produtoId
+      ? `https://api-fluxo.onrender.com/produtos/atualizar/${produtoId}`
+      : 'https://api-fluxo.onrender.com/produtos/cadastrar';
+
+    const method = produtoId ? 'PATCH' : 'POST';
+
+    const response = await fetch(url, {
+      method,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+      body: JSON.stringify(produto),
+    });
+
+    if (!response.ok) throw new Error('Erro ao salvar produto');
+
+    const data = await response.json();
+    alert(data.message || 'Produto salvo com sucesso!');
+  } catch (error) {
+    console.error(error);
+    alert(error.message || 'Erro ao salvar produto');
+  }
+}
