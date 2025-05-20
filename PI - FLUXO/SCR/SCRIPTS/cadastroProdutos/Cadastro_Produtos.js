@@ -11,7 +11,7 @@ const espaco_ajuda = document.querySelector('.espaco_ajuda');
 const wrapper = document.querySelector('.content_wrapper');
 
 let isEditing = false;
-let produtoId = null;
+let productId = null;
 
 // Função para alternar a sidebar e ajustar os elementos
 function toggleSidebar() {
@@ -279,7 +279,7 @@ async function salvarProduto() {
 
   try {
     const url = produtoId
-      ? `https://api-fluxo.onrender.com/produtos/atualizar/${produtoId}`
+      ? `https://api-fluxo.onrender.com/produtos/atualizar/${productId}`
       : 'https://api-fluxo.onrender.com/produtos/cadastrar';
 
     const method = produtoId ? 'PATCH' : 'POST';
