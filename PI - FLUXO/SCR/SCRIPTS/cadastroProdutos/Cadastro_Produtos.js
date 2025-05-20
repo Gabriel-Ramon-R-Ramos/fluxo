@@ -278,11 +278,11 @@ async function salvarProduto() {
   document.getElementById('salvar').onclick = salvarProduto;
 
   try {
-    const url = produtoId
+    const url = productId
       ? `https://api-fluxo.onrender.com/produtos/atualizar/${productId}`
       : 'https://api-fluxo.onrender.com/produtos/cadastrar';
 
-    const method = produtoId ? 'PATCH' : 'POST';
+    const method = productId ? 'PATCH' : 'POST';
 
     const response = await fetch(url, {
       method,
