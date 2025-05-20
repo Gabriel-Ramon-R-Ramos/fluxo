@@ -274,6 +274,9 @@ async function salvarProduto() {
     },
   };
 
+  // Botão salvar com a função PATCH e POST
+  document.getElementById('salvar').onclick = salvarProduto;
+
   try {
     const url = produtoId
       ? `https://api-fluxo.onrender.com/produtos/atualizar/${produtoId}`
