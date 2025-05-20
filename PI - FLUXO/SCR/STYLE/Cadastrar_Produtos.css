@@ -407,7 +407,7 @@ body {
 }
 
 .side_bar .burguer:hover {
-  background-color: #919191;
+  background-color: transparent;
 }
 
 .painel_body {
