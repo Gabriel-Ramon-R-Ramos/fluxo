@@ -12,6 +12,7 @@ const wrapper = document.querySelector('.content_wrapper');
 
 let isEditing = false;
 let productId = null;
+let produtoOriginal = null;
 
 // Função para alternar a sidebar e ajustar os elementos
 function toggleSidebar() {
@@ -24,16 +25,24 @@ burguerButton.addEventListener('click', toggleSidebar);
 
 // --------- Código para as abas e modo de edição ---------
 document.addEventListener('DOMContentLoaded', () => {
-  toggleModo(false); // Começa no modo de visualização
-
+  // Obtenha os parâmetros da URL apenas uma vez
   const urlParams = new URLSearchParams(window.location.search);
   produtoId = urlParams.get('id');
+  productId = produtoId; // Unifica as variáveis para evitar problemas
 
+  // Configure o botão salvar
+  const salvarBtn = document.getElementById('salvar');
+  if (salvarBtn) {
+    salvarBtn.removeAttribute('onclick');
+    salvarBtn.addEventListener('click', salvarProduto);
+  }
   const editarButton = document.getElementById('editar');
   if (produtoId) {
     editarButton.textContent = 'Editar';
     carregarDadosProduto(produtoId);
   }
+
+  toggleModo(false); // Começa no modo de visualização
 
   const filters = document.querySelectorAll('.filter');
   const activeIndicator = document.querySelector('.active-indicator');
@@ -143,6 +152,9 @@ async function carregarDadosProduto(id) {
 
     // Obtém os dados do produto em formato JSON
     const produto = await response.json();
+
+    produtoOriginal = JSON.parse(JSON.stringify(produto)); // Armazena o produto original para comparação
+
     // Preenche o formulário e a visualização com os dados
     preencherFormulario(produto);
     preencherVisualizacao(produto);
@@ -250,9 +262,35 @@ function updateLotInfo(selectedLotId) {
   preencherCampo('codigo_fornecedor', selectedLot.supplierInfo?.supplierCode);
 }
 
-/* ------- Função de POST e PACTH ------- */
-async function salvarProduto() {
-  const produto = {
+// Função para identificar apenas os campos modificados
+function obterCamposModificados() {
+  // Se não temos os dados originais, precisamos enviar o produto completo
+  if (!produtoOriginal) {
+    return {
+      productInfo: {
+        productName: document.getElementById('nome_produto').value,
+        productSKU: document.getElementById('SKU').value,
+        productDescription: document.getElementById('descricao').value,
+        productCategory: document.getElementById('categoria').value,
+        productBrand: document.getElementById('marca').value,
+        productModel: document.getElementById('modelo').value,
+      },
+      priceInfo: {
+        productPrice: parseFloat(
+          document.getElementById('preco_venda').value.replace(',', '.')
+        ),
+      },
+      technicalInfo: {
+        productWidth: parseFloat(document.getElementById('largura').value),
+        productHeight: parseFloat(document.getElementById('altura').value),
+        productLength: parseFloat(document.getElementById('comprimento').value),
+        productWeight: parseFloat(document.getElementById('peso').value),
+      },
+    };
+  }
+
+  // Extrair valores atuais do formulário
+  const dadosAtuais = {
     productInfo: {
       productName: document.getElementById('nome_produto').value,
       productSKU: document.getElementById('SKU').value,
@@ -274,15 +312,114 @@ async function salvarProduto() {
     },
   };
 
-  // Botão salvar com a função PATCH e POST
-  document.getElementById('salvar').onclick = salvarProduto;
+  // Objeto para armazenar apenas os campos modificados
+  const camposModificados = {};
 
+  // Verifica alterações em productInfo
+  const infoModificado = {};
+  let temModificacaoInfo = false;
+
+  for (const campo in dadosAtuais.productInfo) {
+    if (dadosAtuais.productInfo[campo] !== produtoOriginal.productInfo[campo]) {
+      infoModificado[campo] = dadosAtuais.productInfo[campo];
+      temModificacaoInfo = true;
+    }
+  }
+
+  if (temModificacaoInfo) {
+    camposModificados.productInfo = infoModificado;
+  }
+
+  // Verifica alterações em priceInfo
+  const priceModificado = {};
+  let temModificacaoPrice = false;
+
+  if (
+    dadosAtuais.priceInfo.productPrice !==
+    produtoOriginal.priceInfo.productPrice
+  ) {
+    priceModificado.productPrice = dadosAtuais.priceInfo.productPrice;
+    temModificacaoPrice = true;
+  }
+
+  if (temModificacaoPrice) {
+    camposModificados.priceInfo = priceModificado;
+  }
+
+  // Verifica alterações em technicalInfo
+  const techModificado = {};
+  let temModificacaoTech = false;
+
+  for (const campo in dadosAtuais.technicalInfo) {
+    if (
+      dadosAtuais.technicalInfo[campo] !== produtoOriginal.technicalInfo[campo]
+    ) {
+      techModificado[campo] = dadosAtuais.technicalInfo[campo];
+      temModificacaoTech = true;
+    }
+  }
+
+  if (temModificacaoTech) {
+    camposModificados.technicalInfo = techModificado;
+  }
+
+  console.log('Campos modificados:', camposModificados);
+  return camposModificados;
+}
+
+/* ------- Função de POST e PACTH ------- */
+
+async function salvarProduto() {
   try {
-    const url = productId
-      ? `https://api-fluxo.onrender.com/produtos/atualizar/${productId}`
+    // Unifica os nomes de variável para evitar problemas
+    const idProduto = produtoId || productId;
+
+    // Determina se é novo (POST) ou edição (PATCH)
+    const url = idProduto
+      ? `https://api-fluxo.onrender.com/produtos/atualizar/${idProduto}`
       : 'https://api-fluxo.onrender.com/produtos/cadastrar';
 
-    const method = productId ? 'PATCH' : 'POST';
+    const method = idProduto ? 'PATCH' : 'POST';
+
+    // Para POST, envia o produto completo
+    // Para PATCH, envia apenas os campos modificados
+    const dadosParaEnviar =
+      method === 'PATCH'
+        ? obterCamposModificados()
+        : {
+            productInfo: {
+              productName: document.getElementById('nome_produto').value,
+              productSKU: document.getElementById('SKU').value,
+              productDescription: document.getElementById('descricao').value,
+              productCategory: document.getElementById('categoria').value,
+              productBrand: document.getElementById('marca').value,
+              productModel: document.getElementById('modelo').value,
+            },
+            priceInfo: {
+              productPrice: parseFloat(
+                document.getElementById('preco_venda').value.replace(',', '.')
+              ),
+            },
+            technicalInfo: {
+              productWidth: parseFloat(
+                document.getElementById('largura').value
+              ),
+              productHeight: parseFloat(
+                document.getElementById('altura').value
+              ),
+              productLength: parseFloat(
+                document.getElementById('comprimento').value
+              ),
+              productWeight: parseFloat(document.getElementById('peso').value),
+            },
+          };
+
+    // Verifica se há campos para atualizar no caso de PATCH
+    if (method === 'PATCH' && Object.keys(dadosParaEnviar).length === 0) {
+      alert('Nenhuma alteração detectada!');
+      esconderBotoesDeEdicao();
+      return;
+    }
 
     const response = await fetch(url, {
       method,
@@ -290,15 +427,88 @@ async function salvarProduto() {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
-      body: JSON.stringify(produto),
+      body: JSON.stringify(dadosParaEnviar),
     });
 
     if (!response.ok) throw new Error('Erro ao salvar produto');
 
     const data = await response.json();
     alert(data.message || 'Produto salvo com sucesso!');
+
+    // Após salvar, atualizamos o produto original com os novos valores
+    if (method === 'PATCH' && produtoOriginal) {
+      // Atualiza apenas os campos que foram modificados
+      for (const categoria in dadosParaEnviar) {
+        for (const campo in dadosParaEnviar[categoria]) {
+          produtoOriginal[categoria][campo] = dadosParaEnviar[categoria][campo];
+        }
+      }
+    }
+
+    // Volta para o modo de visualização
+    esconderBotoesDeEdicao();
+
+    // Atualiza a visualização
+    if (idProduto) {
+      preencherVisualizacao(produtoOriginal || dadosParaEnviar);
+    } else {
+      // Se foi inclusão, redireciona
+      setTimeout(() => {
+        window.location.href = 'Controle_Estoque.html';
+      }, 500);
+    }
   } catch (error) {
     console.error(error);
     alert(error.message || 'Erro ao salvar produto');
   }
 }
+
+//Função Antiga do PATCH e POST
+// async function salvarProduto() {
+//   const produto = {
+//     productInfo: {
+//       productName: document.getElementById('nome_produto').value,
+//       productSKU: document.getElementById('SKU').value,
+//       productDescription: document.getElementById('descricao').value,
+//       productCategory: document.getElementById('categoria').value,
+//       productBrand: document.getElementById('marca').value,
+//       productModel: document.getElementById('modelo').value,
+//     },
+//     priceInfo: {
+//       productPrice: parseFloat(
+//         document.getElementById('preco_venda').value.replace(',', '.')
+//       ),
+//     },
+//     technicalInfo: {
+//       productWidth: parseFloat(document.getElementById('largura').value),
+//       productHeight: parseFloat(document.getElementById('altura').value),
+//       productLength: parseFloat(document.getElementById('comprimento').value),
+//       productWeight: parseFloat(document.getElementById('peso').value),
+//     },
+//   };
+
+//   try {
+//     const url = productId
+//       ? `https://api-fluxo.onrender.com/produtos/atualizar/${productId}`
+//       : 'https://api-fluxo.onrender.com/produtos/cadastrar';
+
+//     const method = productId ? 'PATCH' : 'POST';
+
+//     const response = await fetch(url, {
+//       method,
+//       headers: {
+//         'Content-Type': 'application/json',
+//         Authorization: `Bearer ${localStorage.getItem('token')}`,
+//       },
+//       body: JSON.stringify(produto),
+//     });
+
+//     if (!response.ok) throw new Error('Erro ao salvar produto');
+
+//     const data = await response.json();
+//     alert(data.message || 'Produto salvo com sucesso!');
+//   } catch (error) {
+//     console.error(error);
+//     alert(error.message || 'Erro ao salvar produto');
+//   }
+// }
