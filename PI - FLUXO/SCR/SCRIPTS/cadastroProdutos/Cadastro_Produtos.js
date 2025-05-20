@@ -264,33 +264,8 @@ function updateLotInfo(selectedLotId) {
 
 // Função para identificar apenas os campos modificados
 function obterCamposModificados() {
-  // Se não temos os dados originais, precisamos enviar o produto completo
-  if (!produtoOriginal) {
-    return {
-      productInfo: {
-        productName: document.getElementById('nome_produto').value,
-        productSKU: document.getElementById('SKU').value,
-        productDescription: document.getElementById('descricao').value,
-        productCategory: document.getElementById('categoria').value,
-        productBrand: document.getElementById('marca').value,
-        productModel: document.getElementById('modelo').value,
-      },
-      priceInfo: {
-        productPrice: parseFloat(
-          document.getElementById('preco_venda').value.replace(',', '.')
-        ),
-      },
-      technicalInfo: {
-        productWidth: parseFloat(document.getElementById('largura').value),
-        productHeight: parseFloat(document.getElementById('altura').value),
-        productLength: parseFloat(document.getElementById('comprimento').value),
-        productWeight: parseFloat(document.getElementById('peso').value),
-      },
-    };
-  }
-
-  // Extrair valores atuais do formulário
-  const dadosAtuais = {
+  // Extrair valores atuais do formulário (objeto completo)
+  const dadosCompletos = {
     productInfo: {
       productName: document.getElementById('nome_produto').value,
       productSKU: document.getElementById('SKU').value,
@@ -303,6 +278,8 @@ function obterCamposModificados() {
       productPrice: parseFloat(
         document.getElementById('preco_venda').value.replace(',', '.')
       ),
+      // Mantém o valor promocional original ou usa 0 se não existir
+      promotionalPrice: produtoOriginal?.priceInfo?.promotionalPrice || 0,
     },
     technicalInfo: {
       productWidth: parseFloat(document.getElementById('largura').value),
@@ -312,22 +289,29 @@ function obterCamposModificados() {
     },
   };
 
-  // Objeto para armazenar apenas os campos modificados
-  const camposModificados = {};
+  // Se não temos dados originais ou estamos em inclusão, retorna objeto completo
+  if (!produtoOriginal) {
+    return dadosCompletos;
+  }
+
+  // Para fins de logging, identificamos quais campos foram alterados
+  const camposAlterados = {};
 
   // Verifica alterações em productInfo
   const infoModificado = {};
   let temModificacaoInfo = false;
 
-  for (const campo in dadosAtuais.productInfo) {
-    if (dadosAtuais.productInfo[campo] !== produtoOriginal.productInfo[campo]) {
-      infoModificado[campo] = dadosAtuais.productInfo[campo];
+  for (const campo in dadosCompletos.productInfo) {
+    if (
+      dadosCompletos.productInfo[campo] !== produtoOriginal.productInfo[campo]
+    ) {
+      infoModificado[campo] = dadosCompletos.productInfo[campo];
       temModificacaoInfo = true;
     }
   }
 
   if (temModificacaoInfo) {
-    camposModificados.productInfo = infoModificado;
+    camposAlterados.productInfo = infoModificado;
   }
 
   // Verifica alterações em priceInfo
@@ -335,36 +319,40 @@ function obterCamposModificados() {
   let temModificacaoPrice = false;
 
   if (
-    dadosAtuais.priceInfo.productPrice !==
+    dadosCompletos.priceInfo.productPrice !==
     produtoOriginal.priceInfo.productPrice
   ) {
-    priceModificado.productPrice = dadosAtuais.priceInfo.productPrice;
+    priceModificado.productPrice = dadosCompletos.priceInfo.productPrice;
     temModificacaoPrice = true;
   }
 
   if (temModificacaoPrice) {
-    camposModificados.priceInfo = priceModificado;
+    camposAlterados.priceInfo = priceModificado;
   }
 
   // Verifica alterações em technicalInfo
   const techModificado = {};
   let temModificacaoTech = false;
 
-  for (const campo in dadosAtuais.technicalInfo) {
+  for (const campo in dadosCompletos.technicalInfo) {
     if (
-      dadosAtuais.technicalInfo[campo] !== produtoOriginal.technicalInfo[campo]
+      dadosCompletos.technicalInfo[campo] !==
+      produtoOriginal.technicalInfo[campo]
     ) {
-      techModificado[campo] = dadosAtuais.technicalInfo[campo];
+      techModificado[campo] = dadosCompletos.technicalInfo[campo];
       temModificacaoTech = true;
     }
   }
 
   if (temModificacaoTech) {
-    camposModificados.technicalInfo = techModificado;
+    camposAlterados.technicalInfo = techModificado;
   }
 
-  console.log('Campos modificados:', camposModificados);
-  return camposModificados;
+  // Mostra no console apenas os campos que realmente mudaram (para debug)
+  console.log('Campos modificados:', camposAlterados);
+
+  // Retorna o objeto completo para garantir compatibilidade com a API
+  return dadosCompletos;
 }
 
 /* ------- Função de POST e PACTH ------- */
