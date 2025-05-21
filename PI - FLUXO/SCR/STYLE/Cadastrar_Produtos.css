@@ -732,19 +732,22 @@ body {
 }
 
 .descricao {
-  display: -webkit-box; /* necessário para line-clamp */
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3; /* número máximo de linhas visíveis */
-  overflow: hidden; /* esconde o resto do texto */
-  text-overflow: ellipsis; /* “…” no fim da última linha */
+  display: -webkit-box; /* empilha em “caixas” */
+  -webkit-box-orient: vertical; /* orienta em colunas */
+  -webkit-line-clamp: 3; /* mostra até 3 linhas */
+  overflow: hidden; /* esconde o que passar */
+  text-overflow: ellipsis; /* reticências na última linha */
 
-  width: 800px; /* fixa a largura */
-  height: calc(1em); /* altura = line-height × número de linhas */
+  /* controla espaço vertical para 3 linhas */
   line-height: 1.2em; /* ajuste conforme seu design */
+  max-height: calc(1.2em * 3); /* altura = linha × nº de linhas */
 
-  white-space: normal; /* permite as quebras automáticas */
-  overflow-wrap: break-word; /* quebra palavras muito longas */
-  box-sizing: border-box; /* inclui padding/borda no cálculo */
+  /* largura responsiva */
+  width: 800px;
+  box-sizing: border-box;
+  white-space: normal; /* permite quebra automática */
+  overflow-wrap: break-word; /* tenta quebrar nas “palavras” */
+  word-break: break-all; /* forçar quebra em qualquer posição */
 }
 
 /* Rodapé */
@@ -903,5 +906,29 @@ footer {
 
   .dados_produto {
     gap: 20px;
+  }
+  .titulo {
+    display: -webkit-box; /* ativa o box flexível */
+    -webkit-box-orient: vertical; /* orienta em colunas */
+    -webkit-line-clamp: 2; /* máximo de 2 linhas */
+    overflow: hidden; /* esconde o restante */
+    white-space: normal;
+  }
+
+  .descricao {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    line-height: 1.2em;
+    max-height: calc(1.2em * 3);
+
+    width: 100%;
+    box-sizing: border-box;
+    white-space: normal;
+    overflow-wrap: break-word; /* tenta quebrar nas “palavras” */
+    word-break: break-all; /* forçar quebra em qualquer posição */
   }
 }

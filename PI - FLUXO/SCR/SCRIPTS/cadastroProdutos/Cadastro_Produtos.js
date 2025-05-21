@@ -42,6 +42,16 @@ document.addEventListener('DOMContentLoaded', () => {
     carregarDadosProduto(produtoId);
   }
 
+  if (produtoId) {
+    // Modo de edição (o título será atualizado quando os dados forem carregados)
+    document.getElementById('editar').textContent = 'Editar';
+    carregarDadosProduto(produtoId);
+  } else {
+    // Modo de inclusão
+    document.querySelector('.titulo').textContent = 'Novo Produto';
+    document.getElementById('editar').textContent = 'Incluir';
+  }
+
   toggleModo(false); // Começa no modo de visualização
 
   const filters = document.querySelectorAll('.filter');
@@ -154,6 +164,9 @@ async function carregarDadosProduto(id) {
     const produto = await response.json();
 
     produtoOriginal = JSON.parse(JSON.stringify(produto)); // Armazena o produto original para comparação
+
+    document.querySelector('.titulo').textContent =
+      produto.productInfo.productName;
 
     // Preenche o formulário e a visualização com os dados
     preencherFormulario(produto);
