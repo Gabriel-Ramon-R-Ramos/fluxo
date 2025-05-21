@@ -137,27 +137,10 @@
       <section class="nav-tabs">
         <div class="filter-nav">
           <button class="filter active" id="lancamento-filter">Lancamentos</button>
-          <button class="filter" id="reserva-filter">Reserva</button>
           <div class="active-indicator"></div>
         </div>
       </section>
     </section>
-
-    <section class="dados-estoque">
-      <section class="barra-estoque">
-        <div class="estoque-qtd">
-          <p class="estoque-tipo">Saldo físico do depósito:</p>
-          <p class="estoque-valor" id="estoqueFisico">-</p>
-        </div>
-        <div class="estoque-qtd">
-          <p class="estoque-tipo">Total reservado:</p>
-          <p class="estoque-valor" id="estoqueReservado">-</p>
-        </div>
-        <div class="estoque-qtd">
-          <p class="estoque-tipo">Total disponível:</p>
-          <p class="estoque-valor" id="estoqueDisponivel">-</p>
-        </div>
-      </section>
 
       <section class="tabela">
         <table>
@@ -207,6 +190,7 @@
   </main>
   <script src="../SCRIPTS/controleEstoque/estoque-api.js"></script>
   <script src="../SCRIPTS/controleEstoque/controle_estoque.js"></script>
+  <script src="../SCRIPTS/produtos/produtosidebar.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <!--arquivo de idioma português -->
   <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.9/dist/l10n/pt.js"></script>

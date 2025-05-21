@@ -1,54 +1,88 @@
-const URL = "https://api-fluxo.onrender.com";
-const token = localStorage.getItem("token");
+const URL = 'https://api-fluxo.onrender.com';
+const token = localStorage.getItem('token');
 
-// === Verificações de Segurança ===
+// === Variáveis de controle de paginação ===
+let currentPage = 0;
+const pageSize = 10;
+let isLoading = false;
+let totalPages = 1;
 
-// Verifica se o existem um token
-if (!token) {
-  window.location.href = "https://fluxo-uqpq.onrender.com/";
-}
-
-
-
-// === Chamadas API ===
-
-
-async function getProducts() {
+// === Função modificada para paginação ===
+async function getProducts(page = 0, size = 10) {
   try {
-    const response = await fetch(`${URL}/produtos/todos`, {
-      method: "GET",
+    const response = await fetch(`${URL}/produtos/todos?page=${page}&size=${size}`, {
+      method: 'GET',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
     });
 
-    if (!response.ok) {
-      throw new Error(`Código de resposta http do servidor: ${response.status}`);
-    }
+    if (!response.ok) throw new Error(`Erro HTTP: ${response.status}`);
 
     const data = await response.json();
-    return data.productsInPage; // <- importante!
+    return {
+      products: data.productsInPage.map((p) => ({ id: p.id, name: p.productName })), // Filtra apenas id e nome
+      totalPages: data.totalPages,
+    };
   } catch (error) {
-    console.error(`Erro ao listar produtos: ${error}`);
+    console.error('Erro ao buscar produtos:', error);
+    return { products: [], totalPages: 0 };
   }
 }
 
+// === Função para carregar mais produtos ===
+async function loadMoreProducts() {
+  if (isLoading || currentPage >= totalPages) return;
 
-// Função para popular os selects de acesso dinamicamente
-async function populateProdutoSelects() {
-  const products = await getProducts();
-  if (!products) return;
+  isLoading = true;
+  const loader = document.createElement('option');
+  loader.textContent = 'Carregando...';
+  loader.disabled = true;
+  produtoSelect.appendChild(loader);
 
-  const addSelect = document.getElementById("produto");
+  try {
+    const { products, totalPages: newTotalPages } = await getProducts(currentPage, pageSize);
+    totalPages = newTotalPages;
 
-  // Limpa as opções antigas (exceto a primeira)
-  addSelect.innerHTML = '<option value="">-- Escolha uma opção --</option>';
+    produtoSelect.removeChild(loader);
 
-  products.forEach((product) => {
-    const option = document.createElement("option");
-    option.value = product.id; // ou product.productSKU se preferir
-    option.textContent = product.productName;
-    addSelect.appendChild(option);
+    // Adiciona apenas nome e ID
+    products.forEach((product) => {
+      const option = new Option(product.name, product.id);
+      produtoSelect.add(option);
+    });
+
+    currentPage++;
+
+    // Mantém o listener apenas se houver mais páginas
+    if (currentPage < totalPages) {
+      addScrollListener();
+    }
+  } catch (error) {
+    console.error('Erro ao carregar produtos:', error);
+  } finally {
+    isLoading = false;
+  }
+}
+
+// === Detecção de scroll ===
+function addScrollListener() {
+  produtoSelect.addEventListener('scroll', async function scrollHandler() {
+    const { scrollTop, scrollHeight, clientHeight } = this;
+
+    if (scrollTop + clientHeight >= scrollHeight - 10 && currentPage < totalPages) {
+      this.removeEventListener('scroll', scrollHandler);
+      await loadMoreProducts();
+    }
   });
 }
+
+// === Inicialização ===
+const produtoSelect = document.getElementById('produto');
+produtoSelect.innerHTML = '<option value="">Carregando...</option>';
+
+// Primeiro carregamento
+loadMoreProducts().then(() => {
+  if (currentPage < totalPages) addScrollListener();
+});
