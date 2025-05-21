@@ -168,6 +168,8 @@ async function carregarDadosProduto(id) {
     document.querySelector('.titulo').textContent =
       produto.productInfo.productName;
 
+    document.querySelector('.');
+
     // Preenche o formulário e a visualização com os dados
     preencherFormulario(produto);
     preencherVisualizacao(produto);
