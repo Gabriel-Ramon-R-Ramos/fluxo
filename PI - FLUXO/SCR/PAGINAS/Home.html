@@ -3,7 +3,206 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/b8fc751366.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="../STYLE/home.css" />
     <title>HOME - FLUXO</title>
   </head>
-  <body></body>
+  <body>
+    <div class="side_bar">
+      <button id="burguer" class="burguer">☰</button>
+      <div class="ondinha">
+        <img src="../ASSETS/IMAGENS/ondinha.png" alt="logo" />
+      </div>
+      <ul>
+        <li class="espaco_home">
+          <a href="Home.html">Home</a
+          ><img class="img_home" src="../ASSETS/ÍCONES/Home.png" alt="home" />
+        </li>
+        <li class="espaco_cadastro">
+          <a href="Produtos.html">Produtos</a
+          ><img
+            class="img_produtos"
+            src="../ASSETS/ÍCONES/produtos.png"
+            alt="produtos"
+          />
+        </li>
+        <li class="espaco_consulta">
+          <a href="Controle_Estoque.html">Estoque</a
+          ><img
+            class="img_estoque"
+            src="../ASSETS/ÍCONES/estoque.png"
+            alt="estoque"
+          />
+        </li>
+        <li class="espaco_ajuda">
+          <a href="adm.html">Conta</a
+          ><img
+            class="img_config"
+            src="../ASSETS/ÍCONES/config.png"
+            alt="config"
+          />
+        </li>
+      </ul>
+    </div>
+
+    <div id="mobile-side-bar">
+      <div class="bars">
+        <i id="open-mobile-btn" class="fa-solid fa-bars"></i>
+      </div>
+
+      <div class="content">
+        <ul class="links">
+          <li>
+            <a href="../PAGINAS/Home.html">
+              <i class="fa-solid fa-house"></i>
+              <span class="description">Inicio</span>
+            </a>
+          </li>
+          <li>
+            <a href="../PAGINAS/Produtos.html">
+              <i class="fa-solid fa-bag-shopping"></i>
+              <span class="description">Produtos</span>
+            </a>
+          </li>
+          <li>
+            <a href="../PAGINAS/Controle_Estoque.html">
+              <i class="fa-solid fa-box"></i>
+              <span class="description">Estoque</span>
+            </a>
+          </li>
+          <li class="active">
+            <a href="../PAGINAS/adm.html">
+              <i class="fa-solid fa-gear"></i>
+              <span class="description">Administração</span>
+            </a>
+          </li>
+          <li id="logout-mobile">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <span class="description">Sair</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <main class="content_wrapper">
+      <section class="img_bg">
+        <div class="fade">
+          <h2>A evolução do controle logístico nas suas mãos.</h2>
+          <p>
+            Tenha controle total da sua logística em um só lugar. Integre
+            processos e aumente a eficiência com praticidade.
+          </p>
+        </div>
+      </section>
+      <h2>Desenvolvedores</h2>
+      <section class="developers">
+        <div class="people people-1">
+          <div class="contact">
+            <div class="email">
+              <a target="_blank" href="mailto:jose.joz46@hotmail.com"
+                ><i class="fa-regular fa-envelope"></i
+              ></a>
+              <a target="_blank" href="mailto:jose.joz46@hotmail.com"
+                >Jose Antonio</a
+              >
+            </div>
+            <div class="github">
+              <a target="_blank" href="https://github.com/IDeath-Z"
+                ><i class="fa-brands fa-github"></i
+              ></a>
+              <a target="_blank" href="https://github.com/IDeath-Z">IDeath-Z</a>
+            </div>
+          </div>
+        </div>
+        <div class="people people-2">
+          <div class="contact">
+            <div class="email">
+              <a target="_blank" href="mailto:yosaf.marques55@gmail.com"
+                ><i class="fa-regular fa-envelope"></i
+              ></a>
+              <a target="_blank" href="mailto:yosaf.marques55@gmail.com"
+                >Yosaf Marques</a
+              >
+            </div>
+            <div class="github">
+              <a target="_blank" href="https://github.com/Yosaf-Marqs"
+                ><i class="fa-brands fa-github"></i
+              ></a>
+              <a target="_blank" href="https://github.com/Yosaf-Marqs"
+                >Yosaf-Marqs</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="people people-3">
+          <div class="contact">
+            <div class="email">
+              <a target="_blank" href="mailto:garamon97@gmail.com"
+                ><i class="fa-regular fa-envelope"></i
+              ></a>
+              <a target="_blank" href="mailto:garamon97@gmail.com"
+                >Gabriel Ramon</a
+              >
+            </div>
+            <div class="github">
+              <a target="_blank" href="https://github.com/Gabriel-Ramon-R-Ramos"
+                ><i class="fa-brands fa-github"></i
+              ></a>
+              <a target="_blank" href="https://github.com/Gabriel-Ramon-R-Ramos"
+                >Gabriel-Ramon-R-Ramos</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="people people-4">
+          <div class="contact">
+            <div class="email">
+              <a target="_blank" href="mailto:998094597claro@gmail.com"
+                ><i class="fa-regular fa-envelope"></i
+              ></a>
+              <a target="_blank" href="mailto:998094597claro@gmail.com"
+                >Gabriel Claro</a
+              >
+            </div>
+            <div class="github">
+              <a target="_blank" href="https://github.com/Gabriel-C20"
+                ><i class="fa-brands fa-github"></i
+              ></a>
+              <a target="_blank" href="https://github.com/Gabriel-C20"
+                >Gabriel-C20</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+      <h2>Sobre o Fluxo</h2>
+      <section class="about">
+        <p>
+          Este relatório apresenta o desenvolvimento do FLUXO – Ferramenta de
+          Logística Unificada e Otimizada, projeto integrador realizado na
+          Universidade de Sorocaba (UNISO), com o objetivo integrar e
+          automatizar o controle de estoque, minimizando custos e falhas
+          operacionais, por meio de uma interface web responsiva e um aplicativo
+          móvel híbrido. O desenvolvimento seguiu seis fases: (1) fundamentação
+          teórica, embasada em usabilidade e design de informação; (2) definição
+          de identidade visual; (3) prototipagem de telas de login, consulta,
+          cadastro e administração; (4) implementação front-end com HTML5, CSS3
+          e JavaScript; (5) construção de API RESTful em Spring Boot/Java com
+          autenticação JWT e persistência via PostgreSQL; e (6) desenvolvimento
+          mobile em Flutter com WebView para garantia de consistência entre
+          plataformas. Os testes demonstraram usabilidade intuitiva e desempenho
+          satisfatório, conferindo ao FLUXO aplicabilidade em cenários
+          acadêmicos e em pequenas e médias empresas.
+        </p>
+      </section>
+
+      <footer>
+        <p>fluxo.log © Todos os direitos reservados</p>
+      </footer>
+    </main>
+    <script src="../SCRIPTS/home/sideBarHome.js"></script>
+  </body>
 </html>

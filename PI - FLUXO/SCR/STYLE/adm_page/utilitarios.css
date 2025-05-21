@@ -323,6 +323,10 @@ button {
     display: none;
   }
 
+  .side_bar {
+    display: none;
+  }
+
   #mobile-side-bar {
     display: flex;
     flex-flow: column;

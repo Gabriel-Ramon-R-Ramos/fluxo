@@ -1,0 +1,339 @@
+/* === Importações === */
+@import url(../STYLE/adm_page/utilitarios.css);
+
+/* === Global === */
+
+footer {
+  width: 101.4%;
+  padding: var(--spacing-sm);
+  text-align: center;
+  margin-left: -2rem;
+  color: var(--white-color);
+  background-color: var(--primary-color);
+}
+
+/* = === CSS CODE === = */
+
+.content_wrapper {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-left: 60px;
+  transition: left 0.3s ease-in-out;
+}
+
+.img_bg {
+  display: flex;
+  align-items: center;
+  width: 1200px;
+  height: 500px;
+  margin: var(--spacing-xs);
+  border-radius: 1rem;
+  background-image: url(../ASSETS/IMAGENS/home-banner.png);
+  background-size: 100%;
+  background-position: 0 -70px;
+  background-repeat: no-repeat;
+
+  & .fade {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    width: 700px;
+    height: 500px;
+    border-radius: 1rem;
+    padding: var(--spacing-lg);
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 1) 20%,
+      rgba(0, 0, 0, 0) 100%
+    );
+
+    & h2 {
+      font-size: 4.5rem;
+      font-family: var(--default-font);
+      font-weight: 900;
+      color: var(--white-color);
+    }
+
+    & p {
+      font-size: 1.8rem;
+      color: var(--white-color);
+    }
+  }
+}
+
+.developers {
+  display: flex;
+  gap: var(--spacing-md);
+
+  & .people {
+    position: relative;
+    --people-width: 20rem;
+    --people-heigth: 30rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--people-width);
+    height: var(--people-heigth);
+    overflow: hidden;
+    border-radius: 1rem;
+    border: solid 0.3rem var(--primary-color);
+  }
+
+  & .people-1,
+  & .people-2,
+  & .people-3,
+  & .people-4 {
+    &:hover .contact {
+      transform: translateY(0);
+    }
+  }
+
+  & .people-1 {
+    background-image: url(../ASSETS/IMAGENS/jose.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+  }
+
+  & .people-2 {
+    background-image: url(../ASSETS/IMAGENS/yosaf.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+  }
+
+  & .people-3 {
+    background-image: url(../ASSETS/IMAGENS/ramon.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+  }
+
+  & .contact {
+    position: absolute;
+    display: flex;
+    flex-flow: column;
+    justify-content: end;
+    gap: var(--spacing-lg);
+    font-size: var(--font-size-md);
+    width: var(--people-width);
+    height: var(--people-heigth);
+    padding: var(--spacing-md);
+    color: var(--white-color);
+    transform: translateY(25rem);
+    transition: transform 0.3s ease-out;
+    border-radius: 1rem;
+    background: linear-gradient(
+      360deg,
+      var(--primary-color) 20%,
+      rgba(0, 0, 0, 0) 100%
+    );
+
+    & .email,
+    & .github {
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+      justify-content: center;
+      gap: var(--spacing-xs);
+      font-size: var(--font-size-df);
+      text-align: center;
+      transition: scale 0.3s ease;
+
+      & i {
+        font-size: var(--font-size-lg);
+      }
+
+      & a {
+        font-size: inherit;
+      }
+
+      &:hover {
+        scale: 1.2;
+      }
+    }
+  }
+}
+
+.about {
+  width: 1200px;
+  text-align: justify;
+}
+
+/* === SideBar Computador === */
+.side_bar {
+  width: 190px;
+  height: 100svh;
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  font-weight: var(--default-font-weight);
+  position: fixed;
+  left: -140px;
+  padding-top: 20px;
+  z-index: 2;
+  transition: left 0.3s ease-in-out;
+  font-family: var(--default-font);
+}
+
+.side_bar.open {
+  left: 0;
+}
+
+.side_bar ul {
+  list-style-type: none;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+}
+
+.side_bar ul li {
+  padding: 15px;
+  text-align: center;
+  transition: opacity 0.3s ease, height 0.3s ease;
+  opacity: 1;
+  overflow: hidden;
+}
+
+.side_bar ul li a {
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  padding: 3px;
+  justify-content: center;
+}
+
+.side_bar ul li a:hover {
+  background-color: var(--details-color);
+  border-radius: 10px;
+  color: var(--primary-color);
+  height: auto;
+  width: 100px;
+  padding: 3px;
+}
+
+.espaco_home {
+  margin-bottom: 10px;
+  margin-top: 40px;
+}
+
+.espaco_cadastro {
+  margin-bottom: 10px;
+}
+
+.espaco_consulta {
+  margin-bottom: 420px;
+}
+
+.espaco_ajuda {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ondinha {
+  width: 100%;
+  padding: 0px;
+  position: absolute;
+  top: 3px;
+  left: 25px;
+}
+
+.ondinha img {
+  width: 100px;
+  height: auto;
+  object-fit: contain;
+}
+.img_produtos {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  left: 150px;
+}
+.img_estoque {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  left: 150px;
+}
+
+.img_config {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  left: 150px;
+}
+
+.img_home {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  left: 150px;
+}
+
+.side_bar.open + .action_bar {
+  width: calc(100% - 200px);
+  left: 200px;
+}
+
+.burguer {
+  position: fixed;
+  top: 0px;
+  left: 10px;
+  color: var(--details-color);
+  border: none;
+  padding: 0;
+  font-size: 30px;
+  cursor: pointer;
+  z-index: 3;
+  background-color: transparent;
+  transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+}
+
+/* === Responsividade Mobile e Tablet === */
+@media screen and (max-width: 1024px) {
+  footer {
+    width: 100%;
+    margin: auto;
+  }
+
+  .content_wrapper {
+    margin: auto;
+  }
+
+  .img_bg {
+    width: 100%;
+    justify-content: center;
+    background-image: url(../ASSETS/IMAGENS/home-banner-celular.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+
+    & .fade {
+      width: inherit;
+      height: inherit;
+      justify-content: end;
+      text-align: end;
+      background: linear-gradient(
+        360deg,
+        rgba(0, 0, 0, 1) 20%,
+        rgba(0, 0, 0, 0) 100%
+      );
+    }
+  }
+
+  .developers {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+  }
+
+  .about {
+    width: 100%;
+    padding: var(--spacing-md);
+  }
+}
