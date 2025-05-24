@@ -13,6 +13,7 @@ const wrapper = document.querySelector('.content_wrapper');
 let isEditing = false;
 let productId = null;
 let produtoOriginal = null;
+let fornecedorId = null;
 
 // Função para alternar a sidebar e ajustar os elementos
 function toggleSidebar() {
@@ -366,6 +367,34 @@ function obterCamposModificados() {
 
   // Retorna o objeto completo para garantir compatibilidade com a API
   return dadosCompletos;
+}
+
+// Função para preencher os dados de estoque
+function dadosEstoque() {}
+
+// Função para preencher os dados de validade do estoque
+function dadosValidade() {}
+
+// Função para exibir dados do fornecedor
+async function dadosFornecedor() {
+  try {
+    const response = await fetch(
+      `https://api-fluxo.onrender.com/fornecedores/${fornecedorId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      }
+    );
+
+    if (!response.ok) throw new Error('Fornecedor não encontrado');
+
+    const fornecedor = await response.json();
+    preencherCampo;
+  } catch (error) {
+    console.error('Erro ao carregar fornecedor:', error);
+    alert('Erro ao carregar dados do fornecedor');
+  }
 }
 
 /* ------- Função de POST e PACTH ------- */
