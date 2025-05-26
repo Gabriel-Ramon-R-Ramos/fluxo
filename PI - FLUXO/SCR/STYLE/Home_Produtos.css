@@ -459,17 +459,6 @@ h1 {
   will-change: transform;
 }
 
-/* Rodapé */
-footer {
-  width: 100%;
-  height: 50px;
-  background-color: #f0f0f0;
-  text-align: center;
-  line-height: 50px;
-  bottom: 0;
-  position: fixed;
-}
-
 /* Responsividade */
 @media (max-width: 768px) {
   .home_side_bar {
