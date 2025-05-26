@@ -290,7 +290,11 @@ input[type="checkbox"]:checked {
   font-weight: 700;
   padding: 10px;
   white-space: nowrap;
+  font-family: "Jura", sans-serif;
+  font-weight: 700;
   margin-left: 30px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .breadcrumb ul {
@@ -324,8 +328,9 @@ input[type="checkbox"]:checked {
   text-decoration: underline;
 }
 /*Botao incluir produto*/
-.inc-produto{
+a.inc-produto{
   align-items: center;
+  text-align: center;
   width: auto;
   height: auto;
   border: none;
@@ -344,7 +349,7 @@ input[type="checkbox"]:checked {
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow;
 }
-.inc-produto:active{
+a.inc-produto:active{
   transform: scale(0.9);
 }
 
@@ -421,7 +426,7 @@ h1 {
   white-space: nowrap;
   padding-bottom: 5px;
   margin-left: 50px;
-  margin-top: 30px;
+
 }
 
 .filter {
@@ -497,6 +502,9 @@ footer {
     max-width: 500px;
     padding: 28px;
     margin-right: 15px;
+  }
+  a.inc-produto{
+    flex-basis: 100%;
   }
 }
 @media (max-width: 500px) {

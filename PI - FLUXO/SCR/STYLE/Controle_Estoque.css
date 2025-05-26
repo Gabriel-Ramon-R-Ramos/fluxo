@@ -201,6 +201,7 @@ h1 {
   font-weight: 700;
   margin-left: 30px;
   display: flex;
+  flex-wrap: wrap;
 }
 
 .breadcrumb ul {
@@ -273,9 +274,10 @@ h1 {
 .text-lancamento{
   font-family: 'Poppins';
   font-weight: 700;
-  font-size: 25px;
+  font-size: clamp(16px, 4vw, 25px); /* mínimo 16px, máximo 25px */
   height: 38px;
   padding-bottom: 70px;
+
 }
 .incluir-sidebar.open {
   right: 0;
@@ -283,12 +285,12 @@ h1 {
 .close-btn {
   position: absolute;
   top: 0;
-  padding-top: 15px;
+  padding-top: 10px;
   right: 25px;
   display: flex;
   align-items: center;
   gap: 5px;
-  font-size: 15px;
+  font-size: clamp(12px, 2.5vw, 16px); /* mínimo 12px, máximo 16px */
   background: none;
   border: none;
   cursor: pointer;
@@ -296,6 +298,7 @@ h1 {
   font-family: 'Jura', sans-serif;
   font-weight: 700;
   transition: transform 0.1s ease;
+  flex-shrink: 0;
 }
 
 .close-btn .x-fechar {
@@ -316,6 +319,7 @@ h1 {
   display: flex;
   justify-content: space-between;
   gap: 0.5rem;
+ 
 }
 
 .incluir-sidebar .linha {
@@ -323,6 +327,12 @@ h1 {
   gap: 12px;
   margin-bottom: 12px;
 
+}
+.incluir-sidebar .linha-preco{
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px; 
+  flex-wrap: wrap;
 }
 
 .incluir-sidebar .campo {
@@ -377,7 +387,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   content: ''; /* necessário para o ::after aparecer */
   position: absolute; /* posiciona a imagem sobre o input */
   top: 65%;
-  right: 380px;
+  right: 5%;
   transform: translateY(-50%);
   width: 25px;
   height: 25px;
@@ -605,6 +615,7 @@ table{
   padding-left: 90px;
   height: auto;
   font-family: "Jura", sans-serif;
+  overflow-x: auto;
 }
 
 th, td{
@@ -782,6 +793,14 @@ thead th {
   flex-wrap: nowrap;
   overflow-x: auto;
   } 
+  .inc-lancamento{
+    flex-basis: 100%;
+  }
+  .incluir-sidebar {
+    width: 100vw;           /* Ocupa toda a tela */
+    right: -100vw;          /* Esconde fora da tela */
+  }
+
 }
 
 /* Fontes */

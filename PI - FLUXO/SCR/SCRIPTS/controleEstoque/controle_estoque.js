@@ -341,6 +341,7 @@ document.addEventListener('DOMContentLoaded', () => {
       alert('Erro ao enviar dados: ' + error.message);
     }
   });
+  inicializarMenuOpcoes();
 });
 
 /**

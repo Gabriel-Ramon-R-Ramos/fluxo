@@ -4,6 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const searchInput = document.getElementById('searchInput');
   const searchButton = document.getElementById('searchButton');
   const paginacaoContainer = document.getElementById('paginacao');
+  const filters = document.querySelectorAll('.filter');
+  const activeIndicator = document.querySelector('.active-indicator');
+  const filterNav = document.querySelector('.filter-nav');
 
   let produtos = [];
   let paginaAtual = 1;
@@ -139,4 +142,67 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Carrega dados iniciais
   fetchProdutos(paginaAtual);
+
+  //codigo que aplica os filtros
+  function aplicarFiltro(tipo) {
+    const hoje = new Date();
+    const trintaDias = new Date();
+    trintaDias.setDate(hoje.getDate() + 30);
+
+    switch (tipo) {
+      case 'Em Estoque':
+        listaAtual = produtos.filter(p => p.stockInfo.quantityInStock > 0);
+        break;
+      case 'Vencidos':
+        listaAtual = produtos.filter(p => {
+          const venc = new Date(p.validityInfo.productValidity.split('/').reverse().join('-'));
+          return venc < hoje;
+        });
+        break;
+      case 'A Vencer':
+        listaAtual = produtos.filter(p => {
+          const venc = new Date(p.validityInfo.productValidity.split('/').reverse().join('-'));
+          return venc >= hoje && venc <= trintaDias;
+        });
+        break;
+      default:
+        listaAtual = [...produtos];
+    }
+
+    paginaAtual = 1;
+    renderizarProdutos(listaAtual);
+  }
+
+  filters.forEach(button => {
+    button.addEventListener('click', () => {
+      filters.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      updateIndicator(button);
+      aplicarFiltro(button.textContent.trim());
+    });
+  });
+
+  function updateIndicator(button) {
+    const buttonRect = button.getBoundingClientRect();
+    const containerRect = filterNav.getBoundingClientRect();
+    const offsetLeft = buttonRect.left - containerRect.left + filterNav.scrollLeft;
+
+    activeIndicator.style.width = `${button.offsetWidth}px`;
+    activeIndicator.style.transform = `translateX(${offsetLeft}px)`;
+  }
+
+  const initialActive = document.querySelector('.filter.active');
+  if (initialActive) {
+    updateIndicator(initialActive);
+    aplicarFiltro(initialActive.textContent.trim());
+  }
+
+  filterNav.addEventListener('scroll', () => {
+    const activeButton = document.querySelector('.filter.active');
+    if (activeButton) {
+      updateIndicator(activeButton);
+    }
+  });
+
+
 });
