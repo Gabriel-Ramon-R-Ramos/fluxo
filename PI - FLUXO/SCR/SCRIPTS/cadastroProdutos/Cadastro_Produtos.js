@@ -127,6 +127,19 @@ function toggleModo(editar) {
 
   const idParaMostrar = editar ? filtro : `${filtro}_visualizar`;
   document.getElementById(idParaMostrar).classList.add('aba_active');
+
+  if (!editar && produtoOriginal) {
+    if (filtro === 'dados_estoque') {
+      // Atualiza dados de estoque quando a aba de estoque é selecionada
+      preencherDadosEstoque(produtoOriginal);
+    } else if (filtro === 'dados_validade') {
+      // Atualiza informações sobre lotes e validade
+      dadosValidade();
+    } else if (filtro === 'dados_fornecedor') {
+      // Atualiza informações sobre fornecedores
+      dadosFornecedor();
+    }
+  }
 }
 
 // Funções auxiliares para botões
@@ -172,6 +185,7 @@ async function carregarDadosProduto(id) {
     // Preenche o formulário e a visualização com os dados
     preencherFormulario(produto);
     preencherVisualizacao(produto);
+    preencherDadosEstoque(produto);
   } catch (error) {
     // Caso ocorra um erro, exibe o erro e uma mensagem ao usuário
     console.error('Erro ao carregar produto:', error);
@@ -268,7 +282,8 @@ function preencherVisualizacao(produto) {
 
 // Função para o dropdown de lotes (AJUSTE)
 function updateLotInfo(selectedLotId) {
-  const selectedLot = produto.lots?.find((l) => l.id === selectedLotId) || {};
+  const selectedLot =
+    produtoOriginal.lots?.find((l) => l.id === selectedLotId) || {}; //Adicionado "Original" em produto
 
   // Atualiza campos de validade/fornecedor
   preencherCampo('validade', selectedLot.expiryDate?.split('T')[0]);
@@ -369,12 +384,6 @@ function obterCamposModificados() {
   return dadosCompletos;
 }
 
-// Função para preencher os dados de estoque
-function dadosEstoque() {}
-
-// Função para preencher os dados de validade do estoque
-function dadosValidade() {}
-
 // Função para exibir dados do fornecedor
 async function dadosFornecedor() {
   try {
@@ -398,7 +407,6 @@ async function dadosFornecedor() {
 }
 
 /* ------- Função de POST e PACTH ------- */
-
 async function salvarProduto() {
   try {
     // Unifica os nomes de variável para evitar problemas
@@ -493,52 +501,335 @@ async function salvarProduto() {
   }
 }
 
-//Função Antiga do PATCH e POST
-// async function salvarProduto() {
-//   const produto = {
-//     productInfo: {
-//       productName: document.getElementById('nome_produto').value,
-//       productSKU: document.getElementById('SKU').value,
-//       productDescription: document.getElementById('descricao').value,
-//       productCategory: document.getElementById('categoria').value,
-//       productBrand: document.getElementById('marca').value,
-//       productModel: document.getElementById('modelo').value,
-//     },
-//     priceInfo: {
-//       productPrice: parseFloat(
-//         document.getElementById('preco_venda').value.replace(',', '.')
-//       ),
-//     },
-//     technicalInfo: {
-//       productWidth: parseFloat(document.getElementById('largura').value),
-//       productHeight: parseFloat(document.getElementById('altura').value),
-//       productLength: parseFloat(document.getElementById('comprimento').value),
-//       productWeight: parseFloat(document.getElementById('peso').value),
-//     },
-//   };
+/* ------- Funções para Carregar lotes ------- */
+async function dadosValidade() {
+  try {
+    // Verifica se temos um produto carregado
+    if (!produtoId) {
+      console.log('ID do produto não disponível');
+      return;
+    }
 
-//   try {
-//     const url = productId
-//       ? `https://api-fluxo.onrender.com/produtos/atualizar/${productId}`
-//       : 'https://api-fluxo.onrender.com/produtos/cadastrar';
+    // Se já temos os dados do produto carregados, usa os lotes existentes
+    if (produtoOriginal && produtoOriginal.lots) {
+      preencherDadosLotes(produtoOriginal.lots);
+    } else {
+      // Caso contrário, busca o produto para obter os lotes
+      await obterLotesPorProdutoId(produtoId);
+    }
+  } catch (error) {
+    console.error('Erro ao carregar dados de validade:', error);
+    alert('Não foi possível carregar os dados de lotes');
+  }
+}
 
-//     const method = productId ? 'PATCH' : 'POST';
+async function obterLotesPorProdutoId(produtoId) {
+  try {
+    const response = await fetch(
+      `https://api-fluxo.onrender.com/produtos/consulta/${produtoId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      }
+    );
 
-//     const response = await fetch(url, {
-//       method,
-//       headers: {
-//         'Content-Type': 'application/json',
-//         Authorization: `Bearer ${localStorage.getItem('token')}`,
-//       },
-//       body: JSON.stringify(produto),
-//     });
+    if (!response.ok) throw new Error('Erro ao buscar produto');
 
-//     if (!response.ok) throw new Error('Erro ao salvar produto');
+    const produto = await response.json();
+    const lotes = produto.lots || [];
 
-//     const data = await response.json();
-//     alert(data.message || 'Produto salvo com sucesso!');
-//   } catch (error) {
-//     console.error(error);
-//     alert(error.message || 'Erro ao salvar produto');
-//   }
-// }
+    console.log(
+      `Encontrados ${lotes.length} lotes para o produto ${produtoId}`
+    );
+
+    // Preenche os dados dos lotes na interface
+    preencherDadosLotes(lotes);
+
+    return lotes;
+  } catch (error) {
+    console.error('Erro ao obter lotes:', error);
+    return [];
+  }
+}
+
+async function obterLotePorId(loteId) {
+  try {
+    // Primeiro verificamos se o lote já está disponível no produto carregado
+    if (produtoOriginal && produtoOriginal.lots) {
+      const loteExistente = produtoOriginal.lots.find(
+        (lote) => lote.id == loteId
+      );
+      if (loteExistente) {
+        console.log('Lote encontrado nos dados locais:', loteExistente);
+        return loteExistente;
+      }
+    }
+
+    const response = await fetch(
+      `https://api-fluxo.onrender.com/lotes/${loteId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      }
+    );
+
+    if (!response.ok) throw new Error('Lote não encontrado');
+
+    const lote = await response.json();
+    return lote;
+  } catch (error) {
+    console.error(`Erro ao buscar lote ${loteId}:`, error);
+    return null;
+  }
+}
+
+function preencherDadosLotes(lotes) {
+  // Preenche o seletor de lotes se existir
+  const seletorLote = document.getElementById('selecionar_lote');
+  if (seletorLote) {
+    // Limpa as opções anteriores
+    seletorLote.innerHTML = '<option value="">Selecione um lote</option>';
+
+    // Adiciona cada lote como opção
+    lotes.forEach((lote) => {
+      const option = document.createElement('option');
+      option.value = lote.id;
+
+      const dataValidade = formatarData(lote.expiryDate);
+      option.textContent = `Lote #${
+        lote.lotCode || lote.id
+      } - Validade: ${dataValidade}`;
+
+      seletorLote.appendChild(option);
+    });
+
+    // Configura o event listener para seleção de lote
+    seletorLote.onchange = function () {
+      if (this.value) {
+        // Usa a função já existente updateLotInfo ou chama a nova função
+        updateLotInfo(Number(this.value));
+      }
+    };
+  }
+}
+
+function exibirDetalhesLote(lote) {
+  // Implementação depende do seu design
+  // Por exemplo, usando um modal simples:
+  alert(`
+    Detalhes do Lote #${lote.id}
+    
+    Código: ${lote.lotCode || 'N/A'}
+    Validade: ${formatarData(lote.expiryDate)}
+    Quantidade: ${lote.remainingQuantity || 0} unidades
+    Localização: ${lote.lotLocation || 'Não definida'}
+    Fornecedor: ${lote.supplierInfo?.supplierName || 'Não informado'}
+  `);
+}
+
+function formatarData(dataString) {
+  if (!dataString) return 'N/A';
+
+  try {
+    // Se já for uma data formatada como dd/mm/aaaa, retorna como está
+    if (/^\d{2}\/\d{2}\/\d{4}$/.test(dataString)) return dataString;
+
+    const data = new Date(dataString);
+    return data.toLocaleDateString();
+  } catch (e) {
+    return 'Data inválida';
+  }
+}
+
+function isVencido(dataString) {
+  if (!dataString) return false;
+
+  try {
+    const dataValidade = new Date(dataString);
+    const hoje = new Date();
+    return dataValidade < hoje;
+  } catch (e) {
+    return false;
+  }
+}
+
+// Função para preencher os dados de estoque, validade e fornecedor na visualização
+function preencherDadosEstoque(produto) {
+  if (!produto) return;
+
+  // ----- SEÇÃO DE ESTOQUE -----
+  // Obtém os elementos div que contêm os valores (irmãos dos labels)
+  const estoqueAtualEl = document.querySelector(
+    'label[for="estoque"]'
+  ).nextElementSibling;
+  const estoqueMinEl = document.querySelector(
+    'label[for="estoque_minimo"]'
+  ).nextElementSibling;
+  const localizacaoEl = document.querySelector(
+    'label[for="localizacao"]'
+  ).nextElementSibling;
+
+  // Determina os valores para exibição
+  const estoqueInfo = produto.inventoryInfo || {};
+  const estoqueAtual = estoqueInfo.quantity || 0;
+  const estoqueMin = estoqueInfo.minStock || 0;
+  const localizacao = estoqueInfo.location || 'Não definida';
+
+  // Preenche os elementos com os valores
+  estoqueAtualEl.textContent = `${estoqueAtual} unidades`;
+  estoqueMinEl.textContent = `${estoqueMin} unidades`;
+  localizacaoEl.textContent = localizacao;
+
+  // ----- SEÇÃO DE VALIDADE -----
+  // Obtém os elementos relacionados à validade
+  const validadeEl = document.querySelector(
+    'label[for="validade"]'
+  ).nextElementSibling;
+  const loteEl = document.querySelector('label[for="lote"]').nextElementSibling;
+
+  // Limpa o conteúdo anterior do elemento do lote
+  loteEl.innerHTML = '';
+
+  // Configura dados padrão
+  let dataValidade = 'Não se aplica';
+
+  // Se houver lotes, cria um dropdown
+  if (produto.lots && produto.lots.length > 0) {
+    // Ordena os lotes do mais recente para o mais antigo
+    const lotes = [...produto.lots];
+    const lotesOrdenados = lotes.sort((a, b) => {
+      const dataA = a.expiryDate ? new Date(a.expiryDate) : new Date(0);
+      const dataB = b.expiryDate ? new Date(b.expiryDate) : new Date(0);
+      return dataB - dataA;
+    });
+
+    // Cria o elemento select para o dropdown
+    const selectLote = document.createElement('select');
+    selectLote.className = 'select-lote';
+    selectLote.style.width = '100%px';
+    selectLote.style.padding = '5px';
+    selectLote.style.border = '1px solid #ccc';
+    selectLote.style.borderRadius = '4px';
+
+    // Adiciona cada lote como opção
+    lotesOrdenados.forEach((lote) => {
+      const option = document.createElement('option');
+      option.value = lote.id;
+
+      const codigoLote = lote.lotCode || `#${lote.id}`;
+      option.textContent = codigoLote;
+
+      // Armazena a data de validade como atributo data
+      option.dataset.validade = lote.expiryDate || '';
+
+      // Adiciona estilo para lotes vencidos
+      if (isVencido(lote.expiryDate)) {
+        option.style.color = '#d9534f';
+      }
+
+      selectLote.appendChild(option);
+    });
+
+    // Configura o evento de mudança para atualizar a data de validade
+    selectLote.addEventListener('change', function () {
+      const selectedOption = this.options[this.selectedIndex];
+      const dataVal = selectedOption.dataset.validade;
+      validadeEl.textContent = dataVal ? formatarData(dataVal) : 'N/A';
+    });
+
+    // Adiciona o select à div de lote
+    loteEl.appendChild(selectLote);
+
+    // Define a data de validade inicial baseada no primeiro lote
+    if (lotesOrdenados[0].expiryDate) {
+      dataValidade = formatarData(lotesOrdenados[0].expiryDate);
+    }
+  } else {
+    // Se não há lotes, exibe mensagem padrão
+    loteEl.textContent = 'N/A';
+  }
+
+  // Preenche o elemento de validade
+  validadeEl.textContent = dataValidade;
+
+  // // ----- SEÇÃO DE VALIDADE -----
+  // // Obtém os elementos relacionados à validade
+  // const validadeEl = document.querySelector(
+  //   'label[for="validade"]'
+  // ).nextElementSibling;
+  // const loteEl = document.querySelector('label[for="lote"]').nextElementSibling;
+
+  // loteEl.innerHTML = ''; // Inicializa como N/A
+
+  // // Se houver lotes, pega o primeiro lote (mais recente) para exibição
+  // let dataValidade = 'Não se aplica';
+  // let codigoLote = 'N/A';
+
+  // if (produto.lots && produto.lots.length > 0) {
+  //   // Encontra o lote mais recente ou não vencido, se possível
+  //   const lotes = [...produto.lots];
+  //   const lotesOrdenados = lotes.sort((a, b) => {
+  //     // Ordena por data de expiração, do mais recente para o mais antigo
+  //     const dataA = a.expiryDate ? new Date(a.expiryDate) : new Date(0);
+  //     const dataB = b.expiryDate ? new Date(b.expiryDate) : new Date(0);
+  //     return dataB - dataA;
+  //   });
+
+  //   const loteAtual = lotesOrdenados[0];
+
+  //   // Formata a data de validade
+  //   if (loteAtual.expiryDate) {
+  //     const data = new Date(loteAtual.expiryDate);
+  //     dataValidade = data.toLocaleDateString();
+  //   }
+
+  //   // Obtém o código do lote
+  //   codigoLote = loteAtual.lotCode || `#${loteAtual.id}`;
+  // }
+
+  // // Preenche os elementos com os valores
+  // validadeEl.textContent = dataValidade;
+  // loteEl.textContent = codigoLote;
+
+  // ----- SEÇÃO DE FORNECEDOR -----
+  // Obtém os elementos relacionados ao fornecedor
+  const nomeFornecedorEl = document.querySelector(
+    'label[for="nome_fornecedor"]'
+  ).nextElementSibling;
+  const codigoFornecedorEl = document.querySelector(
+    'label[for="codigo_fornecedor"]'
+  ).nextElementSibling;
+
+  // Determina informações do fornecedor
+  let nomeFornecedor = 'Não informado';
+  let codigoFornecedor = 'N/A';
+
+  // Tenta obter informações do fornecedor do produto ou do lote mais recente
+  if (produto.supplierInfo) {
+    nomeFornecedor =
+      produto.supplierInfo.supplierName ||
+      produto.supplierInfo.nome ||
+      'Não informado';
+    codigoFornecedor =
+      produto.supplierInfo.supplierCode || produto.supplierInfo.codigo || 'N/A';
+  } else if (
+    produto.lots &&
+    produto.lots.length > 0 &&
+    produto.lots[0].supplierInfo
+  ) {
+    nomeFornecedor =
+      produto.lots[0].supplierInfo.supplierName ||
+      produto.lots[0].supplierInfo.nome ||
+      'Não informado';
+    codigoFornecedor =
+      produto.lots[0].supplierInfo.supplierCode ||
+      produto.lots[0].supplierInfo.codigo ||
+      'N/A';
+  }
+
+  // Preenche os elementos com os valores
+  nomeFornecedorEl.textContent = nomeFornecedor;
+  codigoFornecedorEl.textContent = codigoFornecedor;
+}
