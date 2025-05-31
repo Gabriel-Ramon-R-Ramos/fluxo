@@ -88,6 +88,8 @@ footer {
   & .people-2,
   & .people-3,
   & .people-4 {
+    background-size: 100%;
+    background-repeat: no-repeat;
     &:hover .contact {
       transform: translateY(0);
     }
@@ -95,20 +97,17 @@ footer {
 
   & .people-1 {
     background-image: url(../ASSETS/IMAGENS/jose.png);
-    background-size: 100%;
-    background-repeat: no-repeat;
   }
 
   & .people-2 {
     background-image: url(../ASSETS/IMAGENS/yosaf.png);
-    background-size: 100%;
-    background-repeat: no-repeat;
   }
 
   & .people-3 {
     background-image: url(../ASSETS/IMAGENS/ramon.png);
-    background-size: 100%;
-    background-repeat: no-repeat;
+  }
+  & .people-4 {
+    background-image: url(../ASSETS/IMAGENS/claro.png);
   }
 
   & .contact {
