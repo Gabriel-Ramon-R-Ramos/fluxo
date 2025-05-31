@@ -86,25 +86,22 @@ O backend está disponível em outro repositório, por decisão do grupo. Para t
 
 ## 🖼️ Preview do Sistema
 
-1. Login
-
-   <img src="https://raw.githubusercontent.com/Gabriel-Ramon-R-Ramos/fluxo/main/DOCS/preview/login.png" alt="Tela de login" width="150"/>
-
-2. Home
-
-   <img src="https://raw.githubusercontent.com/Gabriel-Ramon-R-Ramos/fluxo/main/DOCS/preview/home.png" alt="Tela incial" width="150"/>
-
-3. Produtos
-
-   <img src="https://raw.githubusercontent.com/Gabriel-Ramon-R-Ramos/fluxo/main/DOCS/preview/produtos.png" alt="Tela de produtos" width="150"/>
-
-4. Estoque
-
-   <img src="https://raw.githubusercontent.com/Gabriel-Ramon-R-Ramos/fluxo/main/DOCS/preview/estoque.png" alt="Tela de estoque" width="150"/>
-
-5. Administração
-
-   <img src="https://raw.githubusercontent.com/Gabriel-Ramon-R-Ramos/fluxo/main/DOCS/preview/adm.png" alt="Tela de administração" width="150"/>
+<table>
+  <tr>
+    <td align="center"><strong>Login</strong></td>
+    <td align="center"><strong>Home</strong></td>
+    <td align="center"><strong>Produtos</strong></td>
+    <td align="center"><strong>Estoque</strong></td>
+    <td align="center"><strong>Administração</strong></td>
+  </tr>
+  <tr>
+    <td><img src="https://raw.githubusercontent.com/Gabriel-Ramon-R-Ramos/fluxo/main/DOCS/preview/login.png" alt="Tela de login" width="120"/></td>
+    <td><img src="https://raw.githubusercontent.com/Gabriel-Ramon-R-Ramos/fluxo/main/DOCS/preview/home.png" alt="Tela inicial" width="120"/></td>
+    <td><img src="https://raw.githubusercontent.com/Gabriel-Ramon-R-Ramos/fluxo/main/DOCS/preview/produtos.png" alt="Tela de produtos" width="120"/></td>
+    <td><img src="https://raw.githubusercontent.com/Gabriel-Ramon-R-Ramos/fluxo/main/DOCS/preview/estoque.png" alt="Tela de estoque" width="120"/></td>
+    <td><img src="https://raw.githubusercontent.com/Gabriel-Ramon-R-Ramos/fluxo/main/DOCS/preview/adm.png" alt="Tela de administração" width="120"/></td>
+  </tr>
+</table>
 
 ## 📝 Observações
 
