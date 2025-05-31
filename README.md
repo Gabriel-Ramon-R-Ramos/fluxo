@@ -3,10 +3,10 @@
 ---
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Gabriel-Ramon-R-Ramos/fluxo/main/PI%20-%20FLUXO/SCR/ASSETS/%C3%8DCONES/logo_fluxo.svg" alt="Logo Fluxo" width="150"/>
+  <img src="https://raw.githubusercontent.com/Gabriel-Ramon-R-Ramos/fluxo/main/PI%20-%20FLUXO/SCR/ASSETS/%C3%8DCONES/logo_fluxo.svg" alt="Logo Fluxo"/>
 </p>
 
-# ![wave](https://raw.githubusercontent.com/Gabriel-Ramon-R-Ramos/fluxo/main/PI%20-%20FLUXO/SCR/ASSETS/%C3%8DCONES/wave.svg) Projeto F.L.U.X.O — Ferramenta de Logística Unificada e Otimizada
+# <img src="https://raw.githubusercontent.com/Gabriel-Ramon-R-Ramos/fluxo/main/PI%20-%20FLUXO/SCR/ASSETS/%C3%8DCONES/wave.svg" alt="Logo Fluxo" width="50"/> Projeto F.L.U.X.O — Ferramenta de Logística Unificada e Otimizada
 
 ## 💡 Ideia
 
@@ -87,15 +87,24 @@ O backend está disponível em outro repositório, por decisão do grupo. Para t
 ## 🖼️ Preview do Sistema
 
 1. Login
-   <img src="https://raw.githubusercontent.com/Gabriel-Ramon-R-Ramos/fluxo/main/DOCS/preview/login.png" alt="Tela de login"/>
+
+   <img src="https://raw.githubusercontent.com/Gabriel-Ramon-R-Ramos/fluxo/main/DOCS/preview/login.png" alt="Tela de login" width="150"/>
+
 2. Home
-   <img src="https://raw.githubusercontent.com/Gabriel-Ramon-R-Ramos/fluxo/main/DOCS/preview/home.png" alt="Tela incial"/>
+
+   <img src="https://raw.githubusercontent.com/Gabriel-Ramon-R-Ramos/fluxo/main/DOCS/preview/home.png" alt="Tela incial" width="150"/>
+
 3. Produtos
-   <img src="https://raw.githubusercontent.com/Gabriel-Ramon-R-Ramos/fluxo/main/DOCS/preview/produtos.png" alt="Tela de produtos"/>
+
+   <img src="https://raw.githubusercontent.com/Gabriel-Ramon-R-Ramos/fluxo/main/DOCS/preview/produtos.png" alt="Tela de produtos" width="150"/>
+
 4. Estoque
-   <img src="https://raw.githubusercontent.com/Gabriel-Ramon-R-Ramos/fluxo/main/DOCS/preview/estoque.png" alt="Tela de estoque"/>
+
+   <img src="https://raw.githubusercontent.com/Gabriel-Ramon-R-Ramos/fluxo/main/DOCS/preview/estoque.png" alt="Tela de estoque" width="150"/>
+
 5. Administração
-   <img src="https://raw.githubusercontent.com/Gabriel-Ramon-R-Ramos/fluxo/main/DOCS/preview/adm.png" alt="Tela de administração"/>
+
+   <img src="https://raw.githubusercontent.com/Gabriel-Ramon-R-Ramos/fluxo/main/DOCS/preview/adm.png" alt="Tela de administração" width="150"/>
 
 ## 📝 Observações
 
