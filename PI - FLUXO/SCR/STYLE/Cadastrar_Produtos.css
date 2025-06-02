@@ -762,6 +762,29 @@ body {
     width: 190px; /* Menor largura da sidebar em telas pequenas */
   }
 
+  .painel_head {
+    width: 100%;
+    position: static;
+  }
+
+  .content_wrapper {
+    margin: 0;
+  }
+
+  .action_bar {
+    position: static;
+    width: 100%;
+    padding-left: 0;
+
+    & .voltar {
+      margin: 0;
+    }
+
+    & .salvar {
+      margin: 0;
+    }
+  }
+
   .dados_gerais,
   .dados_estoque {
     padding: 15px;
