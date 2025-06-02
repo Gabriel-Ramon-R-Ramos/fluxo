@@ -3,8 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cadastrar Produtos</title>
+    <script
+      src="https://kit.fontawesome.com/b8fc751366.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="../STYLE/Cadastrar_Produtos.css" />
+    <title>Cadastrar Produtos</title>
   </head>
   <body>
     <div class="side_bar">
@@ -51,6 +55,46 @@
         </li>
       </ul>
     </div>
+
+    <div id="mobile-side-bar">
+      <div class="bars">
+        <i id="open-mobile-btn" class="fa-solid fa-bars"></i>
+      </div>
+
+      <div class="content">
+        <ul class="links">
+          <li>
+            <a href="../PAGINAS/Home.html">
+              <i class="fa-solid fa-house"></i>
+              <span class="description">Inicio</span>
+            </a>
+          </li>
+          <li>
+            <a href="../PAGINAS/Produtos.html">
+              <i class="fa-solid fa-bag-shopping"></i>
+              <span class="description">Produtos</span>
+            </a>
+          </li>
+          <li>
+            <a href="../PAGINAS/Controle_Estoque.html">
+              <i class="fa-solid fa-box"></i>
+              <span class="description">Estoque</span>
+            </a>
+          </li>
+          <li class="active">
+            <a href="../PAGINAS/adm.html">
+              <i class="fa-solid fa-gear"></i>
+              <span class="description">Administração</span>
+            </a>
+          </li>
+          <li id="logout-mobile">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <span class="description">Sair</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
     <div class="content_wrapper">
       <section class="main">
         <section class="painel_head">
@@ -369,5 +413,6 @@
     </div>
 
     <script src="../SCRIPTS/cadastroProdutos/Cadastro_Produtos.js"></script>
+    <script src="../SCRIPTS/sidebarMobile.js"></script>
   </body>
 </html>
