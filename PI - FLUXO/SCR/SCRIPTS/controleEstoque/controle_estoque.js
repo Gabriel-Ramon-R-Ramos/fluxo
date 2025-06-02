@@ -91,9 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
               </button>
               <div class="menu-acao">
                 <ul>
-                  <li>Editar</li>
                   <li>Remover lançamento</li>
-                  <li>Detalhes</li>
                 </ul>
               </div>
             </div>
@@ -337,7 +335,7 @@ document.addEventListener("DOMContentLoaded", () => {
         method: method,
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify(payload),
       });
