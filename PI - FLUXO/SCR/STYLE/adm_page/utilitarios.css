@@ -11,7 +11,7 @@
   --text-color: #000;
   --label-color: #dedede;
   --text-label-color: #4a4343;
-  --bg-color: #eaeaea;
+  --bg-color: #fff;
   --white-color: #fff;
   --danger-color: #ff1228;
   /* === Tipografia === */
@@ -328,6 +328,10 @@ button {
   }
 
   #mobile-side-bar {
+    z-index: 100;
+    position: sticky;
+    top: 0;
+    width: 100%;
     display: flex;
     flex-flow: column;
     align-items: center;
