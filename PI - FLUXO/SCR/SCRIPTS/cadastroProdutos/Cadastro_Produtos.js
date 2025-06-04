@@ -754,45 +754,6 @@ function preencherDadosEstoque(produto) {
   // Preenche o elemento de validade
   validadeEl.textContent = dataValidade;
 
-  // // ----- SEÇÃO DE VALIDADE -----
-  // // Obtém os elementos relacionados à validade
-  // const validadeEl = document.querySelector(
-  //   'label[for="validade"]'
-  // ).nextElementSibling;
-  // const loteEl = document.querySelector('label[for="lote"]').nextElementSibling;
-
-  // loteEl.innerHTML = ''; // Inicializa como N/A
-
-  // // Se houver lotes, pega o primeiro lote (mais recente) para exibição
-  // let dataValidade = 'Não se aplica';
-  // let codigoLote = 'N/A';
-
-  // if (produto.lots && produto.lots.length > 0) {
-  //   // Encontra o lote mais recente ou não vencido, se possível
-  //   const lotes = [...produto.lots];
-  //   const lotesOrdenados = lotes.sort((a, b) => {
-  //     // Ordena por data de expiração, do mais recente para o mais antigo
-  //     const dataA = a.expiryDate ? new Date(a.expiryDate) : new Date(0);
-  //     const dataB = b.expiryDate ? new Date(b.expiryDate) : new Date(0);
-  //     return dataB - dataA;
-  //   });
-
-  //   const loteAtual = lotesOrdenados[0];
-
-  //   // Formata a data de validade
-  //   if (loteAtual.expiryDate) {
-  //     const data = new Date(loteAtual.expiryDate);
-  //     dataValidade = data.toLocaleDateString();
-  //   }
-
-  //   // Obtém o código do lote
-  //   codigoLote = loteAtual.lotCode || `#${loteAtual.id}`;
-  // }
-
-  // // Preenche os elementos com os valores
-  // validadeEl.textContent = dataValidade;
-  // loteEl.textContent = codigoLote;
-
   // ----- SEÇÃO DE FORNECEDOR -----
   // Obtém os elementos relacionados ao fornecedor
   const nomeFornecedorEl = document.querySelector(

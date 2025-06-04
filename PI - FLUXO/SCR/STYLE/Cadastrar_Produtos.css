@@ -43,7 +43,7 @@ body {
   padding-top: 20px;
   z-index: 99;
   transition: left 0.3s ease-in-out;
-  font-family: "Jura", sans-serif;
+  font-family: 'Jura', sans-serif;
 }
 
 .side_bar.open {
@@ -144,7 +144,7 @@ body {
   cursor: pointer;
   border-radius: 5px;
   font-size: 14px;
-  font-family: "Jura";
+  font-family: 'Jura';
   width: 80px;
   height: 30px;
   border: none;
@@ -177,7 +177,7 @@ body {
   cursor: pointer;
   border-radius: 5px;
   font-size: 14px;
-  font-family: "Jura";
+  font-family: 'Jura';
   width: 80px;
   height: 30px;
   border: none;
@@ -203,7 +203,7 @@ body {
   cursor: pointer;
   border-radius: 5px;
   font-size: 14px;
-  font-family: "Jura";
+  font-family: 'Jura';
   width: 80px;
   height: 30px;
   border: none;
@@ -236,7 +236,7 @@ body {
   cursor: pointer;
   border-radius: 5px;
   font-size: 14px;
-  font-family: "Jura";
+  font-family: 'Jura';
   width: 80px;
   height: 30px;
   border: none;
@@ -273,7 +273,7 @@ body {
   gap: 5px;
   padding: 0;
   margin: 0;
-  font-family: "Jura-Light", sans-serif;
+  font-family: 'Jura-Light', sans-serif;
 }
 
 .breadcrumb li {
@@ -283,7 +283,7 @@ body {
 }
 
 .breadcrumb li:not(:last-child)::after {
-  content: ">";
+  content: '>';
   margin-left: 5px;
   color: rgb(0, 234, 255);
 }
@@ -352,7 +352,7 @@ body {
 .titulo {
   /* position: absolute; */
   color: black;
-  font-family: "Poppins", sans-serif; /*Mudar para poppins*/
+  font-family: 'Poppins', sans-serif; /*Mudar para poppins*/
   padding: 0;
   white-space: nowrap;
   font-size: 30px;
@@ -417,7 +417,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  position: relative;
+  /* position: relative; */
   /* align-items: center; */
   /* margin-top: 150px; */
   width: 100%;
@@ -451,7 +451,7 @@ body {
   font-size: 16px;
   position: relative;
   white-space: nowrap;
-  font-family: "Jura", sans-serif;
+  font-family: 'Jura', sans-serif;
   font-weight: 700;
   opacity: 0.4;
   transition: opacity 0.3s ease;
@@ -522,8 +522,8 @@ body {
   width: 100%;
   margin-left: 40px;
   margin-right: auto;
-  margin-top: 40px;
-  font-family: "Jura", sans-serif;
+  margin-top: 50px;
+  font-family: 'Jura', sans-serif;
   white-space: nowrap;
   padding-bottom: 2px;
   position: absolute;
@@ -570,7 +570,7 @@ body {
   width: 100%;
   margin-left: 80px;
   margin-right: auto;
-  font-family: "Jura", sans-serif;
+  font-family: 'Jura', sans-serif;
   white-space: nowrap;
   padding-bottom: 2px;
   position: relative;
@@ -601,7 +601,7 @@ body {
   font-size: 1rem;
   width: 400px;
   text-align: center;
-  font-family: "Jura", sans-serif;
+  font-family: 'Jura', sans-serif;
   background-color: #bdbdbd;
 }
 
@@ -612,7 +612,7 @@ body {
   font-size: 1rem;
   width: 150px;
   text-align: center;
-  font-family: "Jura", sans-serif;
+  font-family: 'Jura', sans-serif;
   background-color: #bdbdbd;
 }
 
@@ -641,7 +641,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 50px;
-  font-family: "Jura", sans-serif;
+  font-family: 'Jura', sans-serif;
 }
 
 .dados_produto {
@@ -650,11 +650,11 @@ body {
 
 .dados_estoque_visu {
   max-width: 1000px;
-  margin-top: 40px;
+  margin-top: 70px;
   width: 100%;
   margin-left: 40px;
   margin-right: auto;
-  font-family: "Jura", sans-serif;
+  font-family: 'Jura', sans-serif;
   position: absolute;
 }
 
@@ -674,7 +674,7 @@ body {
 }
 
 .coluna_estoque::after {
-  content: "";
+  content: '';
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -712,7 +712,7 @@ body {
   font-size: 1rem;
   width: 200px;
   text-align: center;
-  font-family: "Jura", sans-serif;
+  font-family: 'Jura', sans-serif;
   background-color: #bdbdbd;
 }
 /* Aplica estilo uniforme para os labels */
@@ -753,9 +753,9 @@ body {
   word-break: break-all; /* forçar quebra em qualquer posição */
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Jura:wght@300..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 @media (max-width: 768px) {
   .side_bar {
@@ -772,7 +772,7 @@ body {
   }
 
   .action_bar {
-    position: static;
+    position: relative;
     width: 100%;
     padding-left: 0;
 
@@ -881,7 +881,7 @@ body {
 
   .dados_produto_visualizacao {
     height: 100%;
-    margin-top: 15px;
+    margin-top: 30px;
   }
   .itens_estoque,
   .itens_fornecedor,
