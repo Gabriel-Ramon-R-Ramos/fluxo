@@ -95,9 +95,7 @@ function toggleModo(editar) {
   document.getElementById('salvar').classList.toggle('hidden', !editar);
   document.getElementById('cancelar').classList.toggle('hidden', !editar);
 
-  document
-    .querySelectorAll('.aba')
-    .forEach((el) => el.classList.remove('aba_active'));
+  document.querySelectorAll('.aba').forEach((el) => el.classList.remove('aba_active'));
 
   const activeFilter = document.querySelector('.filter.active');
   const filtro = activeFilter.dataset.target;
@@ -111,9 +109,7 @@ function toggleModo(editar) {
     });
 
     if (filtro === 'dados_estoque') {
-      const dadosGeraisBtn = document.querySelector(
-        '[data-target="dados_gerais"]'
-      );
+      const dadosGeraisBtn = document.querySelector('[data-target="dados_gerais"]');
       dadosGeraisBtn.click();
     }
   } else {
@@ -152,7 +148,7 @@ function esconderBotoesDeEdicao() {
 function acaoBotaoVoltar() {
   toggleModo(false);
   setTimeout(() => {
-    window.location.href = 'Controle_Estoque.html';
+    window.location.href = 'Produtos.html';
   }, 200);
 }
 
@@ -162,14 +158,11 @@ function acaoBotaoVoltar() {
 async function carregarDadosProduto(id) {
   try {
     // Faz uma requisição GET para obter os dados do produto
-    const response = await fetch(
-      `https://api-fluxo.onrender.com/produtos/consulta/${id}`,
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`, // Autenticação
-        },
-      }
-    );
+    const response = await fetch(`https://api-fluxo.onrender.com/produtos/consulta/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`, // Autenticação
+      },
+    });
 
     // Verifica se a resposta foi bem-sucedida
     if (!response.ok) throw new Error('Produto não encontrado');
@@ -179,8 +172,7 @@ async function carregarDadosProduto(id) {
 
     produtoOriginal = JSON.parse(JSON.stringify(produto)); // Armazena o produto original para comparação
 
-    document.querySelector('.titulo').textContent =
-      produto.productInfo.productName;
+    document.querySelector('.titulo').textContent = produto.productInfo.productName;
 
     // Preenche o formulário e a visualização com os dados
     preencherFormulario(produto);
@@ -282,8 +274,7 @@ function preencherVisualizacao(produto) {
 
 // Função para o dropdown de lotes (AJUSTE)
 function updateLotInfo(selectedLotId) {
-  const selectedLot =
-    produtoOriginal.lots?.find((l) => l.id === selectedLotId) || {}; //Adicionado "Original" em produto
+  const selectedLot = produtoOriginal.lots?.find((l) => l.id === selectedLotId) || {}; //Adicionado "Original" em produto
 
   // Atualiza campos de validade/fornecedor
   preencherCampo('validade', selectedLot.expiryDate?.split('T')[0]);
@@ -304,9 +295,7 @@ function obterCamposModificados() {
       productModel: document.getElementById('modelo').value,
     },
     priceInfo: {
-      productPrice: parseFloat(
-        document.getElementById('preco_venda').value.replace(',', '.')
-      ),
+      productPrice: parseFloat(document.getElementById('preco_venda').value.replace(',', '.')),
       // Mantém o valor promocional original ou usa 0 se não existir
       promotionalPrice: produtoOriginal?.priceInfo?.promotionalPrice || 0,
     },
@@ -331,9 +320,7 @@ function obterCamposModificados() {
   let temModificacaoInfo = false;
 
   for (const campo in dadosCompletos.productInfo) {
-    if (
-      dadosCompletos.productInfo[campo] !== produtoOriginal.productInfo[campo]
-    ) {
+    if (dadosCompletos.productInfo[campo] !== produtoOriginal.productInfo[campo]) {
       infoModificado[campo] = dadosCompletos.productInfo[campo];
       temModificacaoInfo = true;
     }
@@ -347,10 +334,7 @@ function obterCamposModificados() {
   const priceModificado = {};
   let temModificacaoPrice = false;
 
-  if (
-    dadosCompletos.priceInfo.productPrice !==
-    produtoOriginal.priceInfo.productPrice
-  ) {
+  if (dadosCompletos.priceInfo.productPrice !== produtoOriginal.priceInfo.productPrice) {
     priceModificado.productPrice = dadosCompletos.priceInfo.productPrice;
     temModificacaoPrice = true;
   }
@@ -364,10 +348,7 @@ function obterCamposModificados() {
   let temModificacaoTech = false;
 
   for (const campo in dadosCompletos.technicalInfo) {
-    if (
-      dadosCompletos.technicalInfo[campo] !==
-      produtoOriginal.technicalInfo[campo]
-    ) {
+    if (dadosCompletos.technicalInfo[campo] !== produtoOriginal.technicalInfo[campo]) {
       techModificado[campo] = dadosCompletos.technicalInfo[campo];
       temModificacaoTech = true;
     }
@@ -387,14 +368,11 @@ function obterCamposModificados() {
 // Função para exibir dados do fornecedor
 async function dadosFornecedor() {
   try {
-    const response = await fetch(
-      `https://api-fluxo.onrender.com/fornecedores/${fornecedorId}`,
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-      }
-    );
+    const response = await fetch(`https://api-fluxo.onrender.com/fornecedores/${fornecedorId}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    });
 
     if (!response.ok) throw new Error('Fornecedor não encontrado');
 
@@ -434,20 +412,12 @@ async function salvarProduto() {
               productModel: document.getElementById('modelo').value,
             },
             priceInfo: {
-              productPrice: parseFloat(
-                document.getElementById('preco_venda').value.replace(',', '.')
-              ),
+              productPrice: parseFloat(document.getElementById('preco_venda').value.replace(',', '.')),
             },
             technicalInfo: {
-              productWidth: parseFloat(
-                document.getElementById('largura').value
-              ),
-              productHeight: parseFloat(
-                document.getElementById('altura').value
-              ),
-              productLength: parseFloat(
-                document.getElementById('comprimento').value
-              ),
+              productWidth: parseFloat(document.getElementById('largura').value),
+              productHeight: parseFloat(document.getElementById('altura').value),
+              productLength: parseFloat(document.getElementById('comprimento').value),
               productWeight: parseFloat(document.getElementById('peso').value),
             },
           };
@@ -525,23 +495,18 @@ async function dadosValidade() {
 
 async function obterLotesPorProdutoId(produtoId) {
   try {
-    const response = await fetch(
-      `https://api-fluxo.onrender.com/produtos/consulta/${produtoId}`,
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-      }
-    );
+    const response = await fetch(`https://api-fluxo.onrender.com/produtos/consulta/${produtoId}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    });
 
     if (!response.ok) throw new Error('Erro ao buscar produto');
 
     const produto = await response.json();
     const lotes = produto.lots || [];
 
-    console.log(
-      `Encontrados ${lotes.length} lotes para o produto ${produtoId}`
-    );
+    console.log(`Encontrados ${lotes.length} lotes para o produto ${produtoId}`);
 
     // Preenche os dados dos lotes na interface
     preencherDadosLotes(lotes);
@@ -557,23 +522,18 @@ async function obterLotePorId(loteId) {
   try {
     // Primeiro verificamos se o lote já está disponível no produto carregado
     if (produtoOriginal && produtoOriginal.lots) {
-      const loteExistente = produtoOriginal.lots.find(
-        (lote) => lote.id == loteId
-      );
+      const loteExistente = produtoOriginal.lots.find((lote) => lote.id == loteId);
       if (loteExistente) {
         console.log('Lote encontrado nos dados locais:', loteExistente);
         return loteExistente;
       }
     }
 
-    const response = await fetch(
-      `https://api-fluxo.onrender.com/lotes/${loteId}`,
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-      }
-    );
+    const response = await fetch(`https://api-fluxo.onrender.com/lotes/${loteId}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    });
 
     if (!response.ok) throw new Error('Lote não encontrado');
 
@@ -598,9 +558,7 @@ function preencherDadosLotes(lotes) {
       option.value = lote.id;
 
       const dataValidade = formatarData(lote.expiryDate);
-      option.textContent = `Lote #${
-        lote.lotCode || lote.id
-      } - Validade: ${dataValidade}`;
+      option.textContent = `Lote #${lote.lotCode || lote.id} - Validade: ${dataValidade}`;
 
       seletorLote.appendChild(option);
     });
@@ -661,15 +619,9 @@ function preencherDadosEstoque(produto) {
 
   // ----- SEÇÃO DE ESTOQUE -----
   // Obtém os elementos div que contêm os valores (irmãos dos labels)
-  const estoqueAtualEl = document.querySelector(
-    'label[for="estoque"]'
-  ).nextElementSibling;
-  const estoqueMinEl = document.querySelector(
-    'label[for="estoque_minimo"]'
-  ).nextElementSibling;
-  const localizacaoEl = document.querySelector(
-    'label[for="localizacao"]'
-  ).nextElementSibling;
+  const estoqueAtualEl = document.querySelector('label[for="estoque"]').nextElementSibling;
+  const estoqueMinEl = document.querySelector('label[for="estoque_minimo"]').nextElementSibling;
+  const localizacaoEl = document.querySelector('label[for="localizacao"]').nextElementSibling;
 
   // Determina os valores para exibição
   const estoqueInfo = produto.inventoryInfo || {};
@@ -684,9 +636,7 @@ function preencherDadosEstoque(produto) {
 
   // ----- SEÇÃO DE VALIDADE -----
   // Obtém os elementos relacionados à validade
-  const validadeEl = document.querySelector(
-    'label[for="validade"]'
-  ).nextElementSibling;
+  const validadeEl = document.querySelector('label[for="validade"]').nextElementSibling;
   const loteEl = document.querySelector('label[for="lote"]').nextElementSibling;
 
   // Limpa o conteúdo anterior do elemento do lote
@@ -756,12 +706,8 @@ function preencherDadosEstoque(produto) {
 
   // ----- SEÇÃO DE FORNECEDOR -----
   // Obtém os elementos relacionados ao fornecedor
-  const nomeFornecedorEl = document.querySelector(
-    'label[for="nome_fornecedor"]'
-  ).nextElementSibling;
-  const codigoFornecedorEl = document.querySelector(
-    'label[for="codigo_fornecedor"]'
-  ).nextElementSibling;
+  const nomeFornecedorEl = document.querySelector('label[for="nome_fornecedor"]').nextElementSibling;
+  const codigoFornecedorEl = document.querySelector('label[for="codigo_fornecedor"]').nextElementSibling;
 
   // Determina informações do fornecedor
   let nomeFornecedor = 'Não informado';
@@ -769,25 +715,11 @@ function preencherDadosEstoque(produto) {
 
   // Tenta obter informações do fornecedor do produto ou do lote mais recente
   if (produto.supplierInfo) {
-    nomeFornecedor =
-      produto.supplierInfo.supplierName ||
-      produto.supplierInfo.nome ||
-      'Não informado';
-    codigoFornecedor =
-      produto.supplierInfo.supplierCode || produto.supplierInfo.codigo || 'N/A';
-  } else if (
-    produto.lots &&
-    produto.lots.length > 0 &&
-    produto.lots[0].supplierInfo
-  ) {
-    nomeFornecedor =
-      produto.lots[0].supplierInfo.supplierName ||
-      produto.lots[0].supplierInfo.nome ||
-      'Não informado';
-    codigoFornecedor =
-      produto.lots[0].supplierInfo.supplierCode ||
-      produto.lots[0].supplierInfo.codigo ||
-      'N/A';
+    nomeFornecedor = produto.supplierInfo.supplierName || produto.supplierInfo.nome || 'Não informado';
+    codigoFornecedor = produto.supplierInfo.supplierCode || produto.supplierInfo.codigo || 'N/A';
+  } else if (produto.lots && produto.lots.length > 0 && produto.lots[0].supplierInfo) {
+    nomeFornecedor = produto.lots[0].supplierInfo.supplierName || produto.lots[0].supplierInfo.nome || 'Não informado';
+    codigoFornecedor = produto.lots[0].supplierInfo.supplierCode || produto.lots[0].supplierInfo.codigo || 'N/A';
   }
 
   // Preenche os elementos com os valores
