@@ -29,52 +29,52 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fetch(url, {
       headers: {
-        'Authorization': `Bearer ${token}`
-      }
+        Authorization: `Bearer ${token}`,
+      },
     })
-    .then(res => {
-      if (!res.ok) {
-        if(res.status === 401) {
-          localStorage.removeItem('token');
-          window.location.href = 'login.html';
+      .then((res) => {
+        if (!res.ok) {
+          if (res.status === 401) {
+            localStorage.removeItem('token');
+            window.location.href = 'login.html';
+          }
+          throw new Error('Erro na requisição');
         }
-        throw new Error('Erro na requisição');
-      }
-      return res.json();
-    })
-    .then(data => {
-      produtos = data.productsInPage.map(item => ({
-        productInfo: {
-          productName: item.productName,
-          productSKU: item.productSKU
-        },
-        priceInfo: {
-          productPrice: item.productPrice.toFixed(2)
-        },
-        stockInfo: {
-          quantityInStock: item.remainingQuantity,
-          minimumStock: 0
-        },
-        validityInfo: {
-          productValidity: item.expiryDate ? new Date(item.expiryDate).toLocaleDateString('pt-BR') : 'N/A'
-        },
-        id: item.id
-      }));
+        return res.json();
+      })
+      .then((data) => {
+        produtos = data.productsInPage.map((item) => ({
+          productInfo: {
+            productName: item.productName,
+            productSKU: item.productSKU,
+          },
+          priceInfo: {
+            productPrice: item.productPrice.toFixed(2),
+          },
+          stockInfo: {
+            quantityInStock: item.availableQuantity,
+            minimumStock: 0,
+          },
+          validityInfo: {
+            productValidity: item.expiryDate ? new Date(item.expiryDate).toLocaleDateString('pt-BR') : 'N/A',
+          },
+          id: item.id,
+        }));
 
-      totalPaginas = data.totalPages;
-      renderizarProdutos(produtos);
-      renderizarPaginacao();
-    })
-    .catch(error => {
-      console.error('Erro ao buscar produtos:', error);
-      alert('Erro ao carregar produtos');
-    });
+        totalPaginas = data.totalPages;
+        renderizarProdutos(produtos);
+        renderizarPaginacao();
+      })
+      .catch((error) => {
+        console.error('Erro ao buscar produtos:', error);
+        alert('Erro ao carregar produtos');
+      });
   }
 
   function renderizarProdutos(produtosPagina) {
     tabelaBody.innerHTML = '';
 
-    produtosPagina.forEach(produto => {
+    produtosPagina.forEach((produto) => {
       const row = document.createElement('tr');
       row.dataset.id = produto.id;
       row.innerHTML = `
@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <td>${produto.stockInfo.minimumStock}</td>
         <td>${produto.validityInfo.productValidity}</td>
       `;
-      
+
       // Evento de clique para detalhes do produto
       row.addEventListener('click', (e) => {
         if (e.target.tagName === 'INPUT' || e.target.closest('td:first-child')) return;
@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Sincroniza checkboxes
     const checkboxes = tabelaBody.querySelectorAll('.produto-checkbox');
-    checkboxes.forEach(checkbox => {
+    checkboxes.forEach((checkbox) => {
       checkbox.checked = selectAllCheckbox.checked;
     });
   }
@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Event Listeners
   selectAllCheckbox.addEventListener('change', () => {
     const checkboxes = tabelaBody.querySelectorAll('.produto-checkbox');
-    checkboxes.forEach(checkbox => {
+    checkboxes.forEach((checkbox) => {
       checkbox.checked = selectAllCheckbox.checked;
     });
   });
@@ -151,16 +151,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     switch (tipo) {
       case 'Em Estoque':
-        listaAtual = produtos.filter(p => p.stockInfo.quantityInStock > 0);
+        listaAtual = produtos.filter((p) => p.stockInfo.quantityInStock > 0);
         break;
       case 'Vencidos':
-        listaAtual = produtos.filter(p => {
+        listaAtual = produtos.filter((p) => {
           const venc = new Date(p.validityInfo.productValidity.split('/').reverse().join('-'));
           return venc < hoje;
         });
         break;
       case 'A Vencer':
-        listaAtual = produtos.filter(p => {
+        listaAtual = produtos.filter((p) => {
           const venc = new Date(p.validityInfo.productValidity.split('/').reverse().join('-'));
           return venc >= hoje && venc <= trintaDias;
         });
@@ -173,9 +173,9 @@ document.addEventListener('DOMContentLoaded', () => {
     renderizarProdutos(listaAtual);
   }
 
-  filters.forEach(button => {
+  filters.forEach((button) => {
     button.addEventListener('click', () => {
-      filters.forEach(btn => btn.classList.remove('active'));
+      filters.forEach((btn) => btn.classList.remove('active'));
       button.classList.add('active');
       updateIndicator(button);
       aplicarFiltro(button.textContent.trim());
@@ -203,6 +203,4 @@ document.addEventListener('DOMContentLoaded', () => {
       updateIndicator(activeButton);
     }
   });
-
-
 });
