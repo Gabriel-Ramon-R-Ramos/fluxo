@@ -203,6 +203,23 @@ document.addEventListener("DOMContentLoaded", () => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
+
+        })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Erro ao excluir lançamento.");
+      }
+      // Mensagem de confirmação
+      alert("Lançamento excluído com sucesso!");
+
+      // Aguarda 1 segundo antes de recarregar
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
+    })
+    .catch((error) => {
+      alert("Erro: " + error.message);
+
     });
 
     atualizarTabela();
@@ -345,11 +362,16 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       // Feedback ao usuário
-      if (tipo === "entrada") {
+      if (tipo === "ENTRADA") {
         alert("Entrada registrada com sucesso!");
-      } else if (tipo === "saida") {
+      } else if (tipo === "SAIDA") {
         alert("Saída processada com sucesso!");
       }
+
+      setTimeout(() => {
+      location.reload();
+        }, 1500); // 1 segundo de delay
+
     } catch (error) {
       alert("Erro ao enviar dados: " + error.message);
     }
