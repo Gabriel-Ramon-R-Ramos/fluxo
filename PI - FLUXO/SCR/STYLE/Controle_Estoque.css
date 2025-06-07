@@ -20,7 +20,6 @@ body {
   overflow-x: hidden;
   overflow-y: hidden;
   transition: margin-left 0.3s ease-in-out;
-  padding-bottom: 70px;
 }
 
 /*corpo*/
@@ -190,18 +189,17 @@ h1 {
 
 /* Breadcrumb */
 .breadcrumb {
-  width: 100%;
-  height: auto;
-  font-size: 20px;
-  background-color: #ffffff;
-  font-weight: 700;
-  padding: 10px;
-  white-space: nowrap;
-  font-family: "Jura", sans-serif;
-  font-weight: 700;
-  margin-left: 30px;
   display: flex;
   flex-wrap: wrap;
+  white-space: nowrap;
+  justify-content: space-between;
+  font-family: "Jura", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  width: 95%;
+  margin-left: 35px;
+  padding: 10px;
+  background-color: #ffffff;
 }
 
 .breadcrumb ul {
@@ -234,24 +232,17 @@ h1 {
 }
 /*botao incluir lancamento/reserva*/
 .inc-lancamento {
-  align-items: center;
+  cursor: pointer;
+  font-family: "Jura", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
   width: auto;
-  height: auto;
+  padding: 5px;
+  transition: transform 0.2s ease, box-shadow;
   border: none;
   border-radius: 4px;
-  padding-top: 4px;
-  padding-right: 30px;
-  padding-bottom: 4px;
-  padding-left: 30px;
-  background-color: #0d4aff;
   color: #f0f0f0;
-  font-family: "Jura", sans-serif;
-  font-size: 15px;
-  font-weight: 700;
-  margin-left: auto;
-  margin-right: 70px;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow;
+  background-color: #0d4aff;
 }
 .inc-lancamento:active {
   transform: scale(0.9);
@@ -588,14 +579,13 @@ table {
   font-size: 15px;
   font-weight: 700;
   line-height: 100%;
-  margin-right: 50px;
 }
 .tabela {
-  width: calc(100% - 0px);
+  width: 100%;
+  font-family: "Jura", sans-serif;
   background-color: #ffffff;
   padding-left: 90px;
-  height: auto;
-  font-family: "Jura", sans-serif;
+  padding-right: 15px;
   overflow-x: auto;
 }
 
@@ -720,67 +710,46 @@ thead th {
 }
 
 /* Responsividade */
-@media (max-width: 768px) {
+@media screen and (max-width: 766px) {
   .home_side_bar {
     width: 80px;
   }
   .head-title {
-    margin-left: 30px;
+    margin-left: 0;
+  }
+
+  .breadcrumb {
+    margin-left: 0;
+  }
+  .breadcrumb li {
+    width: 100%;
+  }
+
+  #tituloProduto {
+    margin-left: 15px;
+  }
+
+  .filter-nav {
+    margin-left: 15px;
   }
 
   .home_head {
-    margin-left: auto;
+    margin-left: 0;
   }
+
+  .tabela {
+    margin-left: 0;
+    padding-left: 0;
+  }
+
   .home_tabela {
-    width: calc(100% - 0px);
-    margin-left: 50px;
-  }
-  .breadcrumb {
-    margin-left: 70px;
-  }
-  .breadcrumb li {
-    width: auto;
+    width: 100%;
+    margin-left: 0;
   }
 
   .filter-nav ul {
     flex-wrap: nowrap;
     overflow-x: auto;
-  }
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-  .home_side_bar {
-    width: 80px;
-  }
-  .head-title {
-    margin-left: 30px;
-  }
-
-  .home_head {
-    margin-left: auto;
-  }
-  .home_tabela {
-    width: calc(100% - 0px);
-    margin-left: 50px;
-  }
-  .breadcrumb {
-    margin-left: 70px;
-  }
-  .breadcrumb li {
-    width: auto;
-  }
-
-  .filter-nav ul {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-  }
-  .inc-lancamento {
-    flex-basis: 100%;
-  }
-  .incluir-sidebar {
-    width: 100vw; /* Ocupa toda a tela */
-    right: -100vw; /* Esconde fora da tela */
   }
 }
 
