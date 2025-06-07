@@ -43,7 +43,7 @@ body {
   padding-top: 20px;
   z-index: 99;
   transition: left 0.3s ease-in-out;
-  font-family: "Jura", sans-serif;
+  font-family: 'Jura', sans-serif;
 }
 
 .side_bar.open {
@@ -93,7 +93,7 @@ body {
   height: 100%;
 }
 
-.side_bar.open + .content_wrapper {
+.side_bar.open ~ .content_wrapper {
   margin-left: var(--sidebar-width);
   /* padding-left: calc(40px + var(--sidebar-width)); */
 }
@@ -131,7 +131,7 @@ body {
   transition: left 0.3s ease-in-out, width 0.3s ease-in-out;
 }
 
-.side_bar.open + .action_bar + .content_wrapper {
+.side_bar.open ~ .action_bar + .content_wrapper {
   left: var(--sidebar-width);
   width: calc(100% - var(--sidebar-width));
 }
@@ -144,7 +144,7 @@ body {
   cursor: pointer;
   border-radius: 5px;
   font-size: 14px;
-  font-family: "Jura";
+  font-family: 'Jura';
   width: 80px;
   height: 30px;
   border: none;
@@ -161,7 +161,7 @@ body {
   color: #0d4aff;
 }
 
-.side_bar.open + .content_wrapper .salvar {
+.side_bar.open ~ .content_wrapper .salvar {
   /* left: calc(var(--sidebar-width));
   width: calc(30% - var(--sidebar-collapsed-width)); */
   margin-left: calc(
@@ -177,7 +177,7 @@ body {
   cursor: pointer;
   border-radius: 5px;
   font-size: 14px;
-  font-family: "Jura";
+  font-family: 'Jura';
   width: 80px;
   height: 30px;
   border: none;
@@ -203,7 +203,7 @@ body {
   cursor: pointer;
   border-radius: 5px;
   font-size: 14px;
-  font-family: "Jura";
+  font-family: 'Jura';
   width: 80px;
   height: 30px;
   border: none;
@@ -223,7 +223,7 @@ body {
   background-color: #b3b3b3;
 }
 
-.side_bar.open + .content_wrapper .voltar {
+.side_bar.open ~ .content_wrapper .voltar {
   margin-left: calc(
     30px + (var(--sidebar-width) - var(--sidebar-collapsed-width))
   );
@@ -236,7 +236,7 @@ body {
   cursor: pointer;
   border-radius: 5px;
   font-size: 14px;
-  font-family: "Jura";
+  font-family: 'Jura';
   width: 80px;
   height: 30px;
   border: none;
@@ -273,7 +273,7 @@ body {
   gap: 5px;
   padding: 0;
   margin: 0;
-  font-family: "Jura-Light", sans-serif;
+  font-family: 'Jura-Light', sans-serif;
 }
 
 .breadcrumb li {
@@ -283,7 +283,7 @@ body {
 }
 
 .breadcrumb li:not(:last-child)::after {
-  content: ">";
+  content: '>';
   margin-left: 5px;
   color: rgb(0, 234, 255);
 }
@@ -312,7 +312,7 @@ body {
   transition: left 0.3s ease-in-out, width 0.3s ease-in-out;
 }
 
-.side_bar.open + .content_wrapper .painel_head {
+.side_bar.open ~ .content_wrapper .painel_head {
   left: calc(var(--sidebar-width) + 20px);
   width: calc(100% - var(--sidebar-width) - 40px);
 }
@@ -351,7 +351,7 @@ body {
 .titulo {
   /* position: absolute; */
   color: black;
-  font-family: "Poppins", sans-serif; /*Mudar para poppins*/
+  font-family: 'Poppins', sans-serif; /*Mudar para poppins*/
   padding: 0;
   white-space: nowrap;
   font-size: 30px;
@@ -448,7 +448,7 @@ body {
   font-size: 16px;
   position: relative;
   white-space: nowrap;
-  font-family: "Jura", sans-serif;
+  font-family: 'Jura', sans-serif;
   font-weight: 700;
   opacity: 0.4;
   transition: opacity 0.3s ease;
@@ -520,7 +520,7 @@ body {
   margin-left: 40px;
   margin-right: auto;
   margin-top: 50px;
-  font-family: "Jura", sans-serif;
+  font-family: 'Jura', sans-serif;
   white-space: nowrap;
   padding-bottom: 2px;
   position: absolute;
@@ -565,9 +565,9 @@ body {
 .dados_gerais_edicao {
   max-width: 1000px;
   width: 100%;
-  margin-left: 80px;
+  margin-left: 40px;
   margin-right: auto;
-  font-family: "Jura", sans-serif;
+  font-family: 'Jura', sans-serif;
   white-space: nowrap;
   padding-bottom: 2px;
   position: relative;
@@ -582,7 +582,7 @@ body {
 .coluna {
   display: flex;
   flex-direction: column;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   min-width: 0;
 }
 
@@ -592,24 +592,24 @@ body {
 }
 
 .coluna input {
-  padding: 5px;
+  padding: 7px;
   border-radius: 5px;
   border: 1px solid #4a4343;
-  font-size: 1rem;
+  font-size: 1.5rem;
   width: 400px;
   text-align: center;
-  font-family: "Jura", sans-serif;
+  font-family: 'Jura', sans-serif;
   background-color: #bdbdbd;
 }
 
 .coluna_dimensoes input {
-  padding: 5px;
+  padding: 7px;
   border-radius: 5px;
   border: 1px solid #4a4343;
-  font-size: 1rem;
+  font-size: 1.5rem;
   width: 150px;
   text-align: center;
-  font-family: "Jura", sans-serif;
+  font-family: 'Jura', sans-serif;
   background-color: #bdbdbd;
 }
 
@@ -626,19 +626,20 @@ body {
 
 .preco_venda input {
   width: 150px;
-  margin-bottom: 10px;
+  margin-bottom: 4px;
+  padding: 7px;
 }
 
 .preco_venda label {
   font-weight: 600;
-  margin-top: 10px;
+  margin-top: 6px;
 }
 
 .dados_produtos {
   display: flex;
   flex-direction: column;
   gap: 50px;
-  font-family: "Jura", sans-serif;
+  font-family: 'Jura', sans-serif;
 }
 
 .dados_produto {
@@ -651,7 +652,7 @@ body {
   width: 100%;
   margin-left: 40px;
   margin-right: auto;
-  font-family: "Jura", sans-serif;
+  font-family: 'Jura', sans-serif;
   position: absolute;
 }
 
@@ -671,7 +672,7 @@ body {
 }
 
 .coluna_estoque::after {
-  content: "";
+  content: '';
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -709,7 +710,7 @@ body {
   font-size: 1rem;
   width: 200px;
   text-align: center;
-  font-family: "Jura", sans-serif;
+  font-family: 'Jura', sans-serif;
   background-color: #bdbdbd;
 }
 /* Aplica estilo uniforme para os labels */
@@ -750,9 +751,9 @@ body {
   word-break: break-all; /* forçar quebra em qualquer posição */
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Jura:wght@300..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 @media (max-width: 768px) {
   .side_bar {
