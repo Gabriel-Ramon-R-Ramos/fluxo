@@ -237,6 +237,12 @@ input[type="checkbox"]:checked {
   border-color: #0dffb0;
 }
 
+/*ocultando a checkbox sem removela*/
+#selectAll,
+.produto-checkbox {
+  visibility: hidden;
+}
+
 /*paginação da tabela*/
 .paginacao-container {
   position: fixed;

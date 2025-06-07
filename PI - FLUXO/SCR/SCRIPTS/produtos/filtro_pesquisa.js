@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const row = document.createElement('tr');
       row.dataset.id = produto.id;
       row.innerHTML = `
-
+        <td><input type="checkbox" class="produto-checkbox"></td>
         <td>${produto.productInfo.productName}</td>
         <td>${produto.productInfo.productSKU}</td>
         <td>R$ ${produto.priceInfo.productPrice}</td>
