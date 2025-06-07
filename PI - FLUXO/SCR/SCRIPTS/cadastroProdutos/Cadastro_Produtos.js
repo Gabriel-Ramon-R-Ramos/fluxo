@@ -678,10 +678,16 @@ function preencherDadosEstoque(produto) {
   const codigoFornecedorEl = document.querySelector(
     'label[for="codigo_fornecedor"]'
   ).nextElementSibling;
+
   // Preenche os elementos com os valores
-  estoqueAtualEl.textContent = `${produto.lots[0].remainingQuantity} unidades`;
+  const primeiroLote =
+    produto.lots && produto.lots.length > 0 ? produto.lots[0] : null;
+
+  estoqueAtualEl.textContent = `${
+    primeiroLote?.remainingQuantity ?? 0
+  } unidades`;
   estoqueMinEl.textContent = `0 unidades`;
-  localizacaoEl.textContent = produto.lots[0].lotLocation;
+  localizacaoEl.textContent = primeiroLote?.lotLocation ?? "Não informado";
 
   const loteEl = document.querySelector('label[for="lote"]').nextElementSibling;
   // Limpa o conteúdo anterior do elemento do lote
