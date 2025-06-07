@@ -751,6 +751,15 @@ thead th {
     flex-wrap: nowrap;
     overflow-x: auto;
   }
+
+  .incluir-sidebar {
+    overflow: auto;
+    width: 100vw; /* Ocupa toda a tela */
+  }
+
+  #produto {
+    width: 100%;
+  }
 }
 
 /* Fontes */
